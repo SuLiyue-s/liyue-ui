@@ -1,0 +1,15 @@
+# 忽略文件
+src/
+*.stories.tsx
+*.demo.tsx
+docs/
+.vscode/
+.idea/
+*.md
+!README.md
+.env
+.env.*
+vite.config.ts
+tsconfig.json
+tsconfig.node.json
+babel.config.js

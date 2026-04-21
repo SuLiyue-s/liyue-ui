@@ -1,0 +1,60 @@
+.ly-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ly-badge--standalone {
+  display: inline-flex;
+}
+
+.ly-badge__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--ly-badge-height);
+  height: var(--ly-badge-height);
+  padding: var(--ly-badge-padding);
+  font-size: var(--ly-badge-font-size);
+  font-weight: var(--ly-font-weight-semibold);
+  color: var(--ly-text-inverse);
+  background-color: var(--ly-danger);
+  border-radius: var(--ly-radius-full);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Dot */
+.ly-badge--dot .ly-badge__count {
+  width: 0.5rem;
+  height: 0.5rem;
+  min-width: 0.5rem;
+  padding: 0;
+}
+
+/* Status */
+.ly-badge--success .ly-badge__count {
+  background-color: var(--ly-success);
+}
+
+.ly-badge--warning .ly-badge__count {
+  background-color: var(--ly-warning);
+}
+
+.ly-badge--danger .ly-badge__count {
+  background-color: var(--ly-danger);
+}
+
+.ly-badge--info .ly-badge__count {
+  background-color: var(--ly-info);
+}
+
+.ly-badge--default .ly-badge__count {
+  background-color: var(--ly-text-tertiary);
+}
+
+/* Hidden */
+.ly-badge--hidden .ly-badge__count {
+  display: none;
+}

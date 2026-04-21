@@ -1,0 +1,191 @@
+.ly-tabs {
+  display: flex;
+  width: 100%;
+}
+
+.ly-tabs--top,
+.ly-tabs--bottom {
+  flex-direction: column;
+}
+
+.ly-tabs--left,
+.ly-tabs--right {
+  flex-direction: row;
+}
+
+.ly-tabs--left .ly-tabs__nav,
+.ly-tabs--right .ly-tabs__nav {
+  flex-direction: column;
+  min-width: 8rem;
+}
+
+.ly-tabs__nav {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.ly-tabs--top .ly-tabs__nav {
+  border-bottom: 1px solid var(--ly-border-color);
+}
+
+.ly-tabs--bottom .ly-tabs__nav {
+  border-top: 1px solid var(--ly-border-color);
+  order: 1;
+}
+
+.ly-tabs--left .ly-tabs__nav {
+  border-right: 1px solid var(--ly-border-color);
+}
+
+.ly-tabs--right .ly-tabs__nav {
+  border-left: 1px solid var(--ly-border-color);
+  order: 1;
+}
+
+.ly-tabs__nav-list {
+  display: flex;
+  position: relative;
+}
+
+.ly-tabs--top .ly-tabs__nav-list,
+.ly-tabs--bottom .ly-tabs__nav-list {
+  flex-direction: row;
+}
+
+.ly-tabs__tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: var(--ly-tabs-item-padding);
+  font-size: var(--ly-tabs-item-font-size);
+  color: var(--ly-text-secondary);
+  cursor: pointer;
+  transition: all var(--ly-transition);
+  user-select: none;
+  white-space: nowrap;
+  position: relative;
+}
+
+.ly-tabs__tab:hover {
+  color: var(--ly-text-primary);
+}
+
+.ly-tabs__tab--active {
+  color: var(--ly-primary);
+  font-weight: var(--ly-font-weight-medium);
+}
+
+.ly-tabs__tab--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ly-tabs__tab--disabled:hover {
+  color: var(--ly-text-secondary);
+}
+
+.ly-tabs__tab-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ly-tabs__tab-icon svg {
+  width: 1em;
+  height: 1em;
+}
+
+/* Line type */
+.ly-tabs--line .ly-tabs__tab {
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.ly-tabs--line .ly-tabs__tab--active {
+  border-bottom-color: var(--ly-primary);
+}
+
+/* Card type */
+.ly-tabs--card .ly-tabs__nav {
+  border-bottom: none;
+}
+
+.ly-tabs--card .ly-tabs__tab {
+  border: 1px solid var(--ly-border-color);
+  border-bottom: none;
+  border-radius: var(--ly-radius) var(--ly-radius) 0 0;
+  margin-right: 2px;
+}
+
+.ly-tabs--card .ly-tabs__tab--active {
+  background-color: var(--ly-bg-primary);
+  border-bottom-color: var(--ly-bg-primary);
+}
+
+/* Segment type */
+.ly-tabs--segment .ly-tabs__nav {
+  padding: 0.25rem;
+  background-color: var(--ly-bg-secondary);
+  border-radius: var(--ly-radius);
+}
+
+.ly-tabs--segment .ly-tabs__tab {
+  border-radius: var(--ly-radius-sm);
+  flex: 1;
+}
+
+.ly-tabs--segment .ly-tabs__tab--active {
+  background-color: var(--ly-bg-primary);
+  box-shadow: var(--ly-shadow-sm);
+}
+
+/* Line indicator */
+.ly-tabs__line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background-color: var(--ly-primary);
+  transition: transform var(--ly-transition), width var(--ly-transition);
+}
+
+.ly-tabs--left .ly-tabs__line,
+.ly-tabs--right .ly-tabs__line {
+  width: 2px;
+  height: auto;
+  top: 0;
+  bottom: auto;
+  left: 0;
+  right: auto;
+}
+
+.ly-tabs--right .ly-tabs__line {
+  left: auto;
+  right: 0;
+}
+
+/* Content */
+.ly-tabs__content {
+  flex: 1;
+  min-width: 0;
+  padding: var(--ly-spacing-md);
+  animation: fadeIn var(--ly-transition);
+}
+
+.ly-tabs--top .ly-tabs__content,
+.ly-tabs--bottom .ly-tabs__content {
+  order: 0;
+}
+
+/* Sizes */
+.ly-tabs--sm .ly-tabs__tab {
+  padding: 0.5rem 1rem;
+  font-size: var(--ly-font-size-sm);
+}
+
+.ly-tabs--lg .ly-tabs__tab {
+  padding: 1rem 1.5rem;
+  font-size: var(--ly-font-size-md);
+}

@@ -1,0 +1,261 @@
+:root {
+  /* 主题颜色 */
+  --ly-primary: #6366f1;
+  --ly-primary-hover: #4f46e5;
+  --ly-primary-active: #4338ca;
+  --ly-primary-light: #e0e7ff;
+  --ly-primary-dark: #3730a3;
+
+  --ly-success: #10b981;
+  --ly-success-hover: #059669;
+  --ly-success-active: #047857;
+  --ly-success-light: #d1fae5;
+
+  --ly-warning: #f59e0b;
+  --ly-warning-hover: #d97706;
+  --ly-warning-active: #b45309;
+  --ly-warning-light: #fef3c7;
+
+  --ly-danger: #ef4444;
+  --ly-danger-hover: #dc2626;
+  --ly-danger-active: #b91c1c;
+  --ly-danger-light: #fee2e2;
+
+  --ly-info: #3b82f6;
+  --ly-info-hover: #2563eb;
+  --ly-info-active: #1d4ed8;
+  --ly-info-light: #dbeafe;
+
+  /* 文本颜色 */
+  --ly-text-primary: #1f2937;
+  --ly-text-secondary: #6b7280;
+  --ly-text-tertiary: #9ca3af;
+  --ly-text-disabled: #d1d5db;
+  --ly-text-inverse: #ffffff;
+
+  /* 背景颜色 */
+  --ly-bg-primary: #ffffff;
+  --ly-bg-secondary: #f9fafb;
+  --ly-bg-tertiary: #f3f4f6;
+  --ly-bg-hover: #f3f4f6;
+  --ly-bg-active: #e5e7eb;
+  --ly-bg-disabled: #e5e7eb;
+  --ly-bg-overlay: rgba(0, 0, 0, 0.5);
+
+  /* 边框颜色 */
+  --ly-border-color: #e5e7eb;
+  --ly-border-hover: #d1d5db;
+  --ly-border-active: #6366f1;
+  --ly-border-focus: #6366f1;
+  --ly-border-disabled: #e5e7eb;
+
+  /* 阴影 */
+  --ly-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --ly-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --ly-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --ly-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --ly-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+  /* 圆角 */
+  --ly-radius-none: 0;
+  --ly-radius-sm: 0.125rem;
+  --ly-radius: 0.375rem;
+  --ly-radius-md: 0.5rem;
+  --ly-radius-lg: 0.75rem;
+  --ly-radius-xl: 1rem;
+  --ly-radius-2xl: 1.5rem;
+  --ly-radius-full: 9999px;
+
+  /* 间距 */
+  --ly-spacing-xs: 0.25rem;
+  --ly-spacing-sm: 0.5rem;
+  --ly-spacing: 0.75rem;
+  --ly-spacing-md: 1rem;
+  --ly-spacing-lg: 1.5rem;
+  --ly-spacing-xl: 2rem;
+  --ly-spacing-2xl: 3rem;
+
+  /* 字体大小 */
+  --ly-font-size-xs: 0.75rem;
+  --ly-font-size-sm: 0.875rem;
+  --ly-font-size: 1rem;
+  --ly-font-size-md: 1.125rem;
+  --ly-font-size-lg: 1.25rem;
+  --ly-font-size-xl: 1.5rem;
+  --ly-font-size-2xl: 1.875rem;
+  --ly-font-size-3xl: 2.25rem;
+
+  /* 行高 */
+  --ly-line-height-none: 1;
+  --ly-line-height-tight: 1.25;
+  --ly-line-height-snug: 1.375;
+  --ly-line-height: 1.5;
+  --ly-line-height-relaxed: 1.625;
+  --ly-line-height-loose: 2;
+
+  /* 字重 */
+  --ly-font-weight-light: 300;
+  --ly-font-weight-normal: 400;
+  --ly-font-weight-medium: 500;
+  --ly-font-weight-semibold: 600;
+  --ly-font-weight-bold: 700;
+
+  /* 动画 */
+  --ly-transition-fast: 150ms;
+  --ly-transition: 200ms;
+  --ly-transition-slow: 300ms;
+
+  /* Z-Index */
+  --ly-z-index-dropdown: 1000;
+  --ly-z-index-sticky: 1020;
+  --ly-z-index-fixed: 1030;
+  --ly-z-index-modal-backdrop: 1040;
+  --ly-z-index-modal: 1050;
+  --ly-z-index-popover: 1060;
+  --ly-z-index-tooltip: 1070;
+
+  /* 组件特定变量 */
+  /* Button */
+  --ly-button-height-sm: 2rem;
+  --ly-button-height: 2.5rem;
+  --ly-button-height-lg: 3rem;
+  --ly-button-padding-sm: 0.5rem 1rem;
+  --ly-button-padding: 0.75rem 1.5rem;
+  --ly-button-padding-lg: 1rem 2rem;
+  --ly-button-font-size-sm: 0.875rem;
+  --ly-button-font-size: 1rem;
+  --ly-button-font-size-lg: 1.125rem;
+
+  /* Input */
+  --ly-input-height-sm: 2rem;
+  --ly-input-height: 2.5rem;
+  --ly-input-height-lg: 3rem;
+  --ly-input-padding-sm: 0.375rem 0.75rem;
+  --ly-input-padding: 0.5rem 1rem;
+  --ly-input-padding-lg: 0.75rem 1.25rem;
+  --ly-input-font-size-sm: 0.875rem;
+  --ly-input-font-size: 1rem;
+  --ly-input-font-size-lg: 1.125rem;
+
+  /* Select */
+  --ly-select-height-sm: 2rem;
+  --ly-select-height: 2.5rem;
+  --ly-select-height-lg: 3rem;
+
+  /* Modal */
+  --ly-modal-width-sm: 24rem;
+  --ly-modal-width: 32rem;
+  --ly-modal-width-lg: 40rem;
+  --ly-modal-width-xl: 48rem;
+  --ly-modal-width-full: 90vw;
+
+  /* Drawer */
+  --ly-drawer-width-sm: 20rem;
+  --ly-drawer-width: 24rem;
+  --ly-drawer-width-lg: 32rem;
+  --ly-drawer-width-xl: 40rem;
+
+  /* Tooltip & Popover */
+  --ly-tooltip-max-width: 20rem;
+
+  /* Card */
+  --ly-card-padding-sm: 1rem;
+  --ly-card-padding: 1.5rem;
+  --ly-card-padding-lg: 2rem;
+
+  /* Table */
+  --ly-table-cell-padding-sm: 0.5rem 0.75rem;
+  --ly-table-cell-padding: 0.75rem 1rem;
+  --ly-table-cell-padding-lg: 1rem 1.5rem;
+
+  /* Badge */
+  --ly-badge-font-size: 0.75rem;
+  --ly-badge-padding: 0.125rem 0.5rem;
+  --ly-badge-height: 1.25rem;
+
+  /* Tag */
+  --ly-tag-height-sm: 1.5rem;
+  --ly-tag-height: 2rem;
+  --ly-tag-height-lg: 2.5rem;
+  --ly-tag-padding-sm: 0.25rem 0.75rem;
+  --ly-tag-padding: 0.375rem 1rem;
+  --ly-tag-padding-lg: 0.5rem 1.25rem;
+
+  /* Avatar */
+  --ly-avatar-size-sm: 2rem;
+  --ly-avatar-size: 2.5rem;
+  --ly-avatar-size-lg: 3rem;
+  --ly-avatar-size-xl: 4rem;
+
+  /* Menu */
+  --ly-menu-item-height: 2.5rem;
+  --ly-menu-item-padding: 0.5rem 1rem;
+
+  /* Tabs */
+  --ly-tabs-item-padding: 0.75rem 1.25rem;
+  --ly-tabs-item-font-size: 0.875rem;
+
+  /* Pagination */
+  --ly-pagination-item-height: 2rem;
+  --ly-pagination-item-width: 2rem;
+
+  /* Steps */
+  --ly-steps-icon-size: 2rem;
+  --ly-steps-icon-font-size: 0.875rem;
+
+  /* Breadcrumb */
+  --ly-breadcrumb-item-font-size: 0.875rem;
+  --ly-breadcrumb-item-padding: 0.25rem 0.5rem;
+
+  /* Progress */
+  --ly-progress-height-sm: 0.5rem;
+  --ly-progress-height: 0.75rem;
+  --ly-progress-height-lg: 1rem;
+
+  /* Slider */
+  --ly-slider-height: 0.5rem;
+  --ly-slider-thumb-size: 1rem;
+
+  /* Switch */
+  --ly-switch-height-sm: 1.5rem;
+  --ly-switch-width-sm: 2.5rem;
+  --ly-switch-height: 2rem;
+  --ly-switch-width: 3rem;
+  --ly-switch-height-lg: 2.5rem;
+  --ly-switch-width-lg: 3.5rem;
+
+  /* Checkbox & Radio */
+  --ly-checkbox-size-sm: 1rem;
+  --ly-checkbox-size: 1.25rem;
+  --ly-checkbox-size-lg: 1.5rem;
+
+  /* Upload */
+  --ly-upload-width-sm: 5rem;
+  --ly-upload-height-sm: 5rem;
+  --ly-upload-width: 8rem;
+  --ly-upload-height: 8rem;
+  --ly-upload-width-lg: 10rem;
+  --ly-upload-height-lg: 10rem;
+
+  /* DatePicker */
+  --ly-datepicker-width: 18rem;
+  --ly-datepicker-height: 18rem;
+
+  /* TimePicker */
+  --ly-timepicker-width: 10rem;
+  --ly-timepicker-height: 16rem;
+
+  /* Cascader */
+  --ly-cascader-width: 12rem;
+  --ly-cascader-height: 16rem;
+
+  /* Spin */
+  --ly-spin-size-sm: 1rem;
+  --ly-spin-size: 1.5rem;
+  --ly-spin-size-lg: 2rem;
+
+  /* Skeleton */
+  --ly-skeleton-height: 1rem;
+  --ly-skeleton-height-sm: 0.75rem;
+  --ly-skeleton-height-lg: 1.5rem;
+}

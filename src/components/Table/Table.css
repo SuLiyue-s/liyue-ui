@@ -1,0 +1,109 @@
+.ly-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: auto;
+}
+
+.ly-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ly-table--bordered {
+  border: 1px solid var(--ly-border-color);
+  border-radius: var(--ly-radius);
+}
+
+.ly-table--bordered .ly-table__cell {
+  border: 1px solid var(--ly-border-color);
+}
+
+.ly-table__header {
+  background-color: var(--ly-bg-secondary);
+}
+
+.ly-table__cell {
+  padding: var(--ly-table-cell-padding);
+  text-align: left;
+  color: var(--ly-text-primary);
+  font-size: var(--ly-font-size);
+  transition: background-color var(--ly-transition);
+}
+
+.ly-table--sm .ly-table__cell {
+  padding: var(--ly-table-cell-padding-sm);
+  font-size: var(--ly-font-size-sm);
+}
+
+.ly-table--lg .ly-table__cell {
+  padding: var(--ly-table-cell-padding-lg);
+  font-size: var(--ly-font-size-md);
+}
+
+.ly-table__cell--header {
+  font-weight: var(--ly-font-weight-semibold);
+  white-space: nowrap;
+}
+
+.ly-table__row {
+  transition: background-color var(--ly-transition);
+}
+
+.ly-table__row--striped {
+  background-color: var(--ly-bg-secondary);
+}
+
+.ly-table__row--hoverable:hover {
+  background-color: var(--ly-bg-hover);
+}
+
+.ly-table__row--clickable {
+  cursor: pointer;
+}
+
+.ly-table__cell--selection {
+  width: 3rem;
+  text-align: center;
+}
+
+.ly-table__cell--selection input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+  accent-color: var(--ly-primary);
+}
+
+.ly-table__cell--empty {
+  text-align: center;
+  color: var(--ly-text-tertiary);
+  padding: 3rem;
+}
+
+/* Loading */
+.ly-table--loading {
+  pointer-events: none;
+}
+
+.ly-table--loading .ly-table__row {
+  opacity: 0.5;
+}
+
+.ly-spin {
+  display: inline-block;
+  width: var(--ly-spin-size);
+  height: var(--ly-spin-size);
+  border: 2px solid var(--ly-border-color);
+  border-top-color: var(--ly-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.ly-spin--sm {
+  width: var(--ly-spin-size-sm);
+  height: var(--ly-spin-size-sm);
+}
+
+.ly-spin--lg {
+  width: var(--ly-spin-size-lg);
+  height: var(--ly-spin-size-lg);
+}

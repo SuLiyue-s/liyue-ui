@@ -1,0 +1,193 @@
+.ly-input {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.ly-input--borderless .ly-input__wrapper {
+  border: none;
+}
+
+.ly-input--borderless .ly-input__inner:focus {
+  outline: none;
+}
+
+.ly-input__wrapper {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  background-color: var(--ly-bg-primary);
+  border: 1px solid var(--ly-border-color);
+  border-radius: var(--ly-radius);
+  transition: all var(--ly-transition);
+}
+
+.ly-input__wrapper:hover {
+  border-color: var(--ly-border-hover);
+}
+
+.ly-input__wrapper:focus-within {
+  border-color: var(--ly-border-focus);
+  box-shadow: 0 0 0 3px var(--ly-primary-light);
+}
+
+/* Sizes */
+.ly-input--sm .ly-input__wrapper {
+  height: var(--ly-input-height-sm);
+  font-size: var(--ly-input-font-size-sm);
+}
+
+.ly-input--md .ly-input__wrapper {
+  height: var(--ly-input-height);
+  font-size: var(--ly-input-font-size);
+}
+
+.ly-input--lg .ly-input__wrapper {
+  height: var(--ly-input-height-lg);
+  font-size: var(--ly-input-font-size-lg);
+}
+
+/* Inner */
+.ly-input__inner {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  padding: var(--ly-input-padding);
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: inherit;
+  color: var(--ly-text-primary);
+}
+
+.ly-input__inner::placeholder {
+  color: var(--ly-text-tertiary);
+}
+
+.ly-input__inner:disabled {
+  cursor: not-allowed;
+  background-color: var(--ly-bg-disabled);
+  color: var(--ly-text-disabled);
+}
+
+/* Prefix & Suffix */
+.ly-input__prefix,
+.ly-input__suffix {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5rem;
+  color: var(--ly-text-secondary);
+  flex-shrink: 0;
+}
+
+.ly-input__prefix svg,
+.ly-input__suffix svg {
+  width: 1em;
+  height: 1em;
+}
+
+/* Clear & Password Toggle */
+.ly-input__clear,
+.ly-input__password-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5rem;
+  color: var(--ly-text-tertiary);
+  cursor: pointer;
+  transition: color var(--ly-transition);
+  flex-shrink: 0;
+}
+
+.ly-input__clear:hover,
+.ly-input__password-toggle:hover {
+  color: var(--ly-text-secondary);
+}
+
+.ly-input__clear svg,
+.ly-input__password-toggle svg {
+  width: 1em;
+  height: 1em;
+}
+
+/* Prepend & Append */
+.ly-input__prepend,
+.ly-input__append {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.75rem;
+  background-color: var(--ly-bg-secondary);
+  color: var(--ly-text-secondary);
+  border: 1px solid var(--ly-border-color);
+  font-size: inherit;
+  white-space: nowrap;
+}
+
+.ly-input__prepend {
+  border-right: 0;
+  border-top-left-radius: var(--ly-radius);
+  border-bottom-left-radius: var(--ly-radius);
+}
+
+.ly-input__append {
+  border-left: 0;
+  border-top-right-radius: var(--ly-radius);
+  border-bottom-right-radius: var(--ly-radius);
+}
+
+.ly-input--has-prepend .ly-input__wrapper {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.ly-input--has-append .ly-input__wrapper {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* TextArea */
+.ly-textarea {
+  width: 100%;
+  padding: var(--ly-input-padding);
+  border: 1px solid var(--ly-border-color);
+  border-radius: var(--ly-radius);
+  background-color: var(--ly-bg-primary);
+  font-size: inherit;
+  font-family: inherit;
+  line-height: var(--ly-line-height);
+  color: var(--ly-text-primary);
+  resize: vertical;
+  transition: all var(--ly-transition);
+  outline: none;
+}
+
+.ly-textarea:hover {
+  border-color: var(--ly-border-hover);
+}
+
+.ly-textarea:focus {
+  border-color: var(--ly-border-focus);
+  box-shadow: 0 0 0 3px var(--ly-primary-light);
+}
+
+.ly-textarea::placeholder {
+  color: var(--ly-text-tertiary);
+}
+
+.ly-textarea:disabled {
+  cursor: not-allowed;
+  background-color: var(--ly-bg-disabled);
+  color: var(--ly-text-disabled);
+}
+
+.ly-textarea--borderless {
+  border: none;
+}
+
+.ly-textarea--borderless:focus {
+  box-shadow: none;
+}

@@ -1,0 +1,123 @@
+.ly-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: var(--ly-tag-padding);
+  font-size: var(--ly-font-size-sm);
+  line-height: 1;
+  border-radius: var(--ly-radius);
+  transition: all var(--ly-transition);
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* Sizes */
+.ly-tag--sm {
+  height: var(--ly-tag-height-sm);
+  padding: var(--ly-tag-padding-sm);
+  font-size: var(--ly-font-size-xs);
+}
+
+.ly-tag--lg {
+  height: var(--ly-tag-height-lg);
+  padding: var(--ly-tag-padding-lg);
+  font-size: var(--ly-font-size);
+}
+
+/* Types */
+.ly-tag--default {
+  background-color: var(--ly-bg-secondary);
+  color: var(--ly-text-primary);
+  border-color: var(--ly-border-color);
+}
+
+.ly-tag--primary {
+  background-color: var(--ly-primary-light);
+  color: var(--ly-primary);
+  border-color: var(--ly-primary);
+}
+
+.ly-tag--success {
+  background-color: var(--ly-success-light);
+  color: var(--ly-success);
+  border-color: var(--ly-success);
+}
+
+.ly-tag--warning {
+  background-color: var(--ly-warning-light);
+  color: var(--ly-warning);
+  border-color: var(--ly-warning);
+}
+
+.ly-tag--danger {
+  background-color: var(--ly-danger-light);
+  color: var(--ly-danger);
+  border-color: var(--ly-danger);
+}
+
+.ly-tag--info {
+  background-color: var(--ly-info-light);
+  color: var(--ly-info);
+  border-color: var(--ly-info);
+}
+
+/* Outline */
+.ly-tag--outline {
+  background-color: transparent;
+}
+
+.ly-tag--outline.ly-tag--default {
+  background-color: transparent;
+  color: var(--ly-text-secondary);
+  border-color: var(--ly-border-color);
+}
+
+/* Bordered */
+.ly-tag--bordered {
+  border: 1px solid;
+}
+
+/* Round */
+.ly-tag--round {
+  border-radius: var(--ly-radius-full);
+}
+
+/* Checkable */
+.ly-tag--checkable {
+  cursor: pointer;
+}
+
+.ly-tag--checkable:hover {
+  opacity: 0.8;
+}
+
+.ly-tag--checkable.ly-tag--default:not(.ly-tag--checked) {
+  background-color: transparent;
+  color: var(--ly-text-secondary);
+}
+
+/* Text */
+.ly-tag__text {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Close */
+.ly-tag__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.25rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity var(--ly-transition);
+}
+
+.ly-tag__close:hover {
+  opacity: 1;
+}
+
+.ly-tag__close svg {
+  width: 0.875em;
+  height: 0.875em;
+}

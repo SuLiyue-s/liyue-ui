@@ -1,0 +1,279 @@
+.ly-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: var(--ly-button-padding);
+  font-size: var(--ly-button-font-size);
+  font-weight: var(--ly-font-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  border-radius: var(--ly-radius);
+  cursor: pointer;
+  transition: all var(--ly-transition);
+  user-select: none;
+  height: var(--ly-button-height);
+  text-decoration: none;
+}
+
+.ly-button:focus {
+  outline: none;
+}
+
+.ly-button:focus-visible {
+  box-shadow: 0 0 0 3px var(--ly-primary-light);
+}
+
+/* Sizes */
+.ly-button--sm {
+  height: var(--ly-button-height-sm);
+  padding: var(--ly-button-padding-sm);
+  font-size: var(--ly-button-font-size-sm);
+}
+
+.ly-button--lg {
+  height: var(--ly-button-height-lg);
+  padding: var(--ly-button-padding-lg);
+  font-size: var(--ly-button-font-size-lg);
+}
+
+/* Types */
+.ly-button--primary {
+  background-color: var(--ly-primary);
+  color: var(--ly-text-inverse);
+  border-color: var(--ly-primary);
+}
+
+.ly-button--primary:hover:not(.ly-button--disabled) {
+  background-color: var(--ly-primary-hover);
+  border-color: var(--ly-primary-hover);
+}
+
+.ly-button--primary:active:not(.ly-button--disabled) {
+  background-color: var(--ly-primary-active);
+  border-color: var(--ly-primary-active);
+}
+
+.ly-button--secondary {
+  background-color: var(--ly-bg-secondary);
+  color: var(--ly-text-primary);
+  border-color: var(--ly-border-color);
+}
+
+.ly-button--secondary:hover:not(.ly-button--disabled) {
+  background-color: var(--ly-bg-tertiary);
+  border-color: var(--ly-border-hover);
+}
+
+.ly-button--secondary:active:not(.ly-button--disabled) {
+  background-color: var(--ly-bg-active);
+  border-color: var(--ly-border-active);
+}
+
+.ly-button--success {
+  background-color: var(--ly-success);
+  color: var(--ly-text-inverse);
+  border-color: var(--ly-success);
+}
+
+.ly-button--success:hover:not(.ly-button--disabled) {
+  background-color: var(--ly-success-hover);
+  border-color: var(--ly-success-hover);
+}
+
+.ly-button--success:active:not(.ly-button--disabled) {
+  background-color: var(--ly-success-active);
+  border-color: var(--ly-success-active);
+}
+
+.ly-button--warning {
+  background-color: var(--ly-warning);
+  color: var(--ly-text-inverse);
+  border-color: var(--ly-warning);
+}
+
+.ly-button--warning:hover:not(.ly-button--disabled) {
+  background-color: var(--ly-warning-hover);
+  border-color: var(--ly-warning-hover);
+}
+
+.ly-button--warning:active:not(.ly-button--disabled) {
+  background-color: var(--ly-warning-active);
+  border-color: var(--ly-warning-active);
+}
+
+.ly-button--danger {
+  background-color: var(--ly-danger);
+  color: var(--ly-text-inverse);
+  border-color: var(--ly-danger);
+}
+
+.ly-button--danger:hover:not(.ly-button--disabled) {
+  background-color: var(--ly-danger-hover);
+  border-color: var(--ly-danger-hover);
+}
+
+.ly-button--danger:active:not(.ly-button--disabled) {
+  background-color: var(--ly-danger-active);
+  border-color: var(--ly-danger-active);
+}
+
+.ly-button--info {
+  background-color: var(--ly-info);
+  color: var(--ly-text-inverse);
+  border-color: var(--ly-info);
+}
+
+.ly-button--info:hover:not(.ly-button--disabled) {
+  background-color: var(--ly-info-hover);
+  border-color: var(--ly-info-hover);
+}
+
+.ly-button--info:active:not(.ly-button--disabled) {
+  background-color: var(--ly-info-active);
+  border-color: var(--ly-info-active);
+}
+
+.ly-button--link {
+  background-color: transparent;
+  color: var(--ly-primary);
+  border-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+  height: auto;
+}
+
+.ly-button--link:hover:not(.ly-button--disabled) {
+  color: var(--ly-primary-hover);
+  text-decoration: underline;
+}
+
+.ly-button--link:active:not(.ly-button--disabled) {
+  color: var(--ly-primary-active);
+}
+
+.ly-button--text {
+  background-color: transparent;
+  color: var(--ly-text-primary);
+  border-color: transparent;
+}
+
+.ly-button--text:hover:not(.ly-button--disabled) {
+  background-color: var(--ly-bg-hover);
+}
+
+.ly-button--text:active:not(.ly-button--disabled) {
+  background-color: var(--ly-bg-active);
+}
+
+/* Plain */
+.ly-button--plain.ly-button--primary {
+  background-color: var(--ly-primary-light);
+  color: var(--ly-primary);
+  border-color: var(--ly-primary);
+}
+
+.ly-button--plain.ly-button--primary:hover:not(.ly-button--disabled) {
+  background-color: var(--ly-primary);
+  color: var(--ly-text-inverse);
+}
+
+.ly-button--plain.ly-button--success {
+  background-color: var(--ly-success-light);
+  color: var(--ly-success);
+  border-color: var(--ly-success);
+}
+
+.ly-button--plain.ly-button--success:hover:not(.ly-button--disabled) {
+  background-color: var(--ly-success);
+  color: var(--ly-text-inverse);
+}
+
+.ly-button--plain.ly-button--warning {
+  background-color: var(--ly-warning-light);
+  color: var(--ly-warning);
+  border-color: var(--ly-warning);
+}
+
+.ly-button--plain.ly-button--warning:hover:not(.ly-button--disabled) {
+  background-color: var(--ly-warning);
+  color: var(--ly-text-inverse);
+}
+
+.ly-button--plain.ly-button--danger {
+  background-color: var(--ly-danger-light);
+  color: var(--ly-danger);
+  border-color: var(--ly-danger);
+}
+
+.ly-button--plain.ly-button--danger:hover:not(.ly-button--disabled) {
+  background-color: var(--ly-danger);
+  color: var(--ly-text-inverse);
+}
+
+.ly-button--plain.ly-button--info {
+  background-color: var(--ly-info-light);
+  color: var(--ly-info);
+  border-color: var(--ly-info);
+}
+
+.ly-button--plain.ly-button--info:hover:not(.ly-button--disabled) {
+  background-color: var(--ly-info);
+  color: var(--ly-text-inverse);
+}
+
+/* Round */
+.ly-button--round {
+  border-radius: var(--ly-radius-full);
+}
+
+/* Circle */
+.ly-button--circle {
+  border-radius: var(--ly-radius-full);
+  width: var(--ly-button-height);
+  padding: 0;
+}
+
+.ly-button--circle.ly-button--sm {
+  width: var(--ly-button-height-sm);
+  padding: 0;
+}
+
+.ly-button--circle.ly-button--lg {
+  width: var(--ly-button-height-lg);
+  padding: 0;
+}
+
+/* Disabled */
+.ly-button--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Loading */
+.ly-button--loading {
+  cursor: wait;
+}
+
+.ly-button__loading-icon {
+  width: 1em;
+  height: 1em;
+  animation: spin 1s linear infinite;
+}
+
+.ly-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ly-button__icon svg {
+  width: 1em;
+  height: 1em;
+}
+
+.ly-button__text {
+  display: inline-flex;
+  align-items: center;
+}

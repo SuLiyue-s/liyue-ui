@@ -1,0 +1,116 @@
+.ly-switch {
+  display: inline-flex;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.ly-switch:focus {
+  outline: none;
+}
+
+.ly-switch:focus-visible {
+  outline: 2px solid var(--ly-primary);
+  outline-offset: 2px;
+}
+
+.ly-switch--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.ly-switch__track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--ly-border-color);
+  border-radius: var(--ly-radius-full);
+  transition: background-color var(--ly-transition);
+}
+
+.ly-switch--checked .ly-switch__track {
+  background-color: var(--ly-primary);
+}
+
+.ly-switch__thumb {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: var(--ly-shadow);
+  transition: transform var(--ly-transition);
+}
+
+.ly-switch__icon,
+.ly-switch__text {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.75rem;
+  transition: opacity var(--ly-transition);
+}
+
+.ly-switch__icon svg {
+  width: 0.75em;
+  height: 0.75em;
+}
+
+/* Sizes */
+.ly-switch--sm .ly-switch__track {
+  width: var(--ly-switch-width-sm);
+  height: var(--ly-switch-height-sm);
+}
+
+.ly-switch--sm .ly-switch__thumb {
+  width: calc(var(--ly-switch-height-sm) - 0.5rem);
+  height: calc(var(--ly-switch-height-sm) - 0.5rem);
+  top: 0.25rem;
+  left: 0.25rem;
+}
+
+.ly-switch--sm.ly-switch--checked .ly-switch__thumb {
+  transform: translateX(calc(var(--ly-switch-width-sm) - var(--ly-switch-height-sm)));
+}
+
+.ly-switch--md .ly-switch__track {
+  width: var(--ly-switch-width);
+  height: var(--ly-switch-height);
+}
+
+.ly-switch--md .ly-switch__thumb {
+  width: calc(var(--ly-switch-height) - 0.5rem);
+  height: calc(var(--ly-switch-height) - 0.5rem);
+  top: 0.25rem;
+  left: 0.25rem;
+}
+
+.ly-switch--md.ly-switch--checked .ly-switch__thumb {
+  transform: translateX(calc(var(--ly-switch-width) - var(--ly-switch-height)));
+}
+
+.ly-switch--lg .ly-switch__track {
+  width: var(--ly-switch-width-lg);
+  height: var(--ly-switch-height-lg);
+}
+
+.ly-switch--lg .ly-switch__thumb {
+  width: calc(var(--ly-switch-height-lg) - 0.5rem);
+  height: calc(var(--ly-switch-height-lg) - 0.5rem);
+  top: 0.25rem;
+  left: 0.25rem;
+}
+
+.ly-switch--lg.ly-switch--checked .ly-switch__thumb {
+  transform: translateX(calc(var(--ly-switch-width-lg) - var(--ly-switch-height-lg)));
+}
+
+/* Hover */
+.ly-switch:not(.ly-switch--disabled):hover .ly-switch__track {
+  background-color: var(--ly-border-hover);
+}
+
+.ly-switch:not(.ly-switch--disabled).ly-switch--checked:hover .ly-switch__track {
+  background-color: var(--ly-primary-hover);
+}

@@ -1,0 +1,42 @@
+.ly-skeleton {
+  display: inline-block;
+  width: 100%;
+  height: var(--ly-skeleton-height);
+  background: linear-gradient(
+    90deg,
+    var(--ly-bg-tertiary) 25%,
+    var(--ly-bg-hover) 50%,
+    var(--ly-bg-tertiary) 75%
+  );
+  background-size: 200% 100%;
+  border-radius: var(--ly-radius);
+}
+
+.ly-skeleton--sm {
+  height: var(--ly-skeleton-height-sm);
+}
+
+.ly-skeleton--lg {
+  height: var(--ly-skeleton-height-lg);
+}
+
+.ly-skeleton--animated {
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+.ly-skeleton--circle {
+  border-radius: var(--ly-radius-full);
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.ly-skeleton-paragraph {
+  width: 100%;
+}

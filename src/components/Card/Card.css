@@ -1,0 +1,123 @@
+.ly-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--ly-bg-primary);
+  overflow: hidden;
+  transition: box-shadow var(--ly-transition), transform var(--ly-transition);
+}
+
+.ly-card--bordered {
+  border: 1px solid var(--ly-border-color);
+}
+
+.ly-card--radius-none { border-radius: var(--ly-radius-none); }
+.ly-card--radius-sm { border-radius: var(--ly-radius-sm); }
+.ly-card--radius-md { border-radius: var(--ly-radius-md); }
+.ly-card--radius-lg { border-radius: var(--ly-radius-lg); }
+.ly-card--radius-xl { border-radius: var(--ly-radius-xl); }
+
+.ly-card--shadow {
+  box-shadow: var(--ly-shadow);
+}
+
+.ly-card--shadow-hover:hover {
+  box-shadow: var(--ly-shadow-md);
+  transform: translateY(-2px);
+}
+
+.ly-card--clickable {
+  cursor: pointer;
+}
+
+.ly-card--clickable:active {
+  transform: scale(0.98);
+}
+
+/* Cover */
+.ly-card__cover {
+  width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.ly-card__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Header */
+.ly-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--ly-spacing);
+  padding: var(--ly-card-padding);
+  border-bottom: 1px solid var(--ly-border-color);
+}
+
+.ly-card__avatar {
+  flex-shrink: 0;
+}
+
+.ly-card__header-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.ly-card__title {
+  font-size: var(--ly-font-size-md);
+  font-weight: var(--ly-font-weight-semibold);
+  color: var(--ly-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.ly-card__subtitle {
+  font-size: var(--ly-font-size-sm);
+  color: var(--ly-text-secondary);
+}
+
+/* Body */
+.ly-card__body {
+  padding: var(--ly-card-padding);
+  flex: 1;
+}
+
+.ly-card--sm .ly-card__body {
+  padding: var(--ly-card-padding-sm);
+}
+
+.ly-card--lg .ly-card__body {
+  padding: var(--ly-card-padding-lg);
+}
+
+/* Actions */
+.ly-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  padding: var(--ly-spacing-sm) var(--ly-spacing);
+  border-top: 1px solid var(--ly-border-color);
+  background-color: var(--ly-bg-secondary);
+}
+
+.ly-card__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: var(--ly-spacing-sm);
+  color: var(--ly-text-secondary);
+  transition: color var(--ly-transition), background-color var(--ly-transition);
+  cursor: pointer;
+}
+
+.ly-card__action:not(:last-child) {
+  border-right: 1px solid var(--ly-border-color);
+}
+
+.ly-card__action:hover {
+  color: var(--ly-primary);
+  background-color: var(--ly-bg-hover);
+}

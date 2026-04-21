@@ -1,0 +1,84 @@
+.ly-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ly-checkbox--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.ly-checkbox__input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ly-checkbox__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--ly-border-color);
+  border-radius: var(--ly-radius-sm);
+  background-color: var(--ly-bg-primary);
+  transition: all var(--ly-transition);
+  flex-shrink: 0;
+}
+
+/* Sizes */
+.ly-checkbox--sm .ly-checkbox__box {
+  width: var(--ly-checkbox-size-sm);
+  height: var(--ly-checkbox-size-sm);
+}
+
+.ly-checkbox--md .ly-checkbox__box {
+  width: var(--ly-checkbox-size);
+  height: var(--ly-checkbox-size);
+}
+
+.ly-checkbox--lg .ly-checkbox__box {
+  width: var(--ly-checkbox-size-lg);
+  height: var(--ly-checkbox-size-lg);
+}
+
+.ly-checkbox__box svg {
+  width: 0.75em;
+  height: 0.75em;
+  color: white;
+}
+
+.ly-checkbox:hover .ly-checkbox__box {
+  border-color: var(--ly-primary);
+}
+
+.ly-checkbox__input:focus-visible + .ly-checkbox__box {
+  box-shadow: 0 0 0 3px var(--ly-primary-light);
+}
+
+.ly-checkbox--checked .ly-checkbox__box,
+.ly-checkbox--indeterminate .ly-checkbox__box {
+  background-color: var(--ly-primary);
+  border-color: var(--ly-primary);
+}
+
+.ly-checkbox__label {
+  color: var(--ly-text-primary);
+  font-size: inherit;
+}
+
+/* Checkbox Group */
+.ly-checkbox-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.ly-checkbox-group--horizontal {
+  flex-direction: row;
+}
+
+.ly-checkbox-group--vertical {
+  flex-direction: column;
+}

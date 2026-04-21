@@ -1,0 +1,136 @@
+.ly-menu {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--ly-bg-primary);
+  min-width: 12rem;
+}
+
+.ly-menu--horizontal {
+  flex-direction: row;
+  min-width: auto;
+  border-bottom: 1px solid var(--ly-border-color);
+}
+
+.ly-menu--horizontal .ly-menu__item-wrapper {
+  display: inline-flex;
+}
+
+.ly-menu--horizontal .ly-menu__item {
+  padding: 0.75rem 1.25rem;
+  border-bottom: 2px solid transparent;
+}
+
+.ly-menu--horizontal .ly-menu__item--selected {
+  border-bottom-color: var(--ly-primary);
+}
+
+.ly-menu--vertical {
+  border-right: 1px solid var(--ly-border-color);
+}
+
+.ly-menu--dark {
+  background-color: #001529;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.ly-menu--dark .ly-menu__item {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.ly-menu--dark .ly-menu__item:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.ly-menu--dark .ly-menu__item--selected {
+  background-color: var(--ly-primary);
+  color: white;
+}
+
+.ly-menu__item-wrapper {
+  position: relative;
+}
+
+.ly-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--ly-menu-item-padding);
+  height: var(--ly-menu-item-height);
+  cursor: pointer;
+  transition: all var(--ly-transition);
+  user-select: none;
+  color: var(--ly-text-primary);
+}
+
+.ly-menu__item:hover {
+  background-color: var(--ly-bg-hover);
+}
+
+.ly-menu__item--selected {
+  background-color: var(--ly-primary-light);
+  color: var(--ly-primary);
+}
+
+.ly-menu__item--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ly-menu__item--disabled:hover {
+  background-color: transparent;
+}
+
+.ly-menu__item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.ly-menu__item-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ly-menu__item-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ly-menu__item-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  transition: transform var(--ly-transition);
+  flex-shrink: 0;
+}
+
+.ly-menu__item-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ly-menu__item-wrapper:has(.ly-menu__submenu) .ly-menu__item-arrow {
+  transform: rotate(-90deg);
+}
+
+.ly-menu__submenu {
+  overflow: hidden;
+  animation: slideDown var(--ly-transition) ease-out;
+}
+
+/* Dark theme */
+.ly-menu--dark.ly-menu--horizontal {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.ly-menu--dark.ly-menu--vertical {
+  border-right-color: rgba(255, 255, 255, 0.1);
+}

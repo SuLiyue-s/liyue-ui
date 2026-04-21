@@ -1,0 +1,141 @@
+.ly-pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--ly-spacing-md);
+  font-size: var(--ly-font-size-sm);
+}
+
+.ly-pagination--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.ly-pagination__total {
+  color: var(--ly-text-secondary);
+  white-space: nowrap;
+}
+
+.ly-pagination__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.ly-pagination__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--ly-pagination-item-width);
+  height: var(--ly-pagination-item-height);
+  padding: 0 0.5rem;
+  border: 1px solid var(--ly-border-color);
+  border-radius: var(--ly-radius);
+  cursor: pointer;
+  transition: all var(--ly-transition);
+  user-select: none;
+  color: var(--ly-text-primary);
+}
+
+.ly-pagination__item:hover {
+  border-color: var(--ly-primary);
+  color: var(--ly-primary);
+}
+
+.ly-pagination__item--active {
+  background-color: var(--ly-primary);
+  border-color: var(--ly-primary);
+  color: white;
+}
+
+.ly-pagination__item--active:hover {
+  background-color: var(--ly-primary-hover);
+  border-color: var(--ly-primary-hover);
+}
+
+.ly-pagination__item--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ly-pagination__item--disabled:hover {
+  border-color: var(--ly-border-color);
+  color: var(--ly-text-primary);
+}
+
+.ly-pagination__item svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.ly-pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--ly-pagination-item-width);
+  height: var(--ly-pagination-item-height);
+  color: var(--ly-text-tertiary);
+}
+
+.ly-pagination__options {
+  display: flex;
+  align-items: center;
+  gap: var(--ly-spacing-sm);
+}
+
+.ly-pagination__select {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--ly-border-color);
+  border-radius: var(--ly-radius);
+  background-color: var(--ly-bg-primary);
+  color: var(--ly-text-primary);
+  font-size: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.ly-pagination__select:focus {
+  border-color: var(--ly-border-focus);
+}
+
+.ly-pagination__jumper {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--ly-text-secondary);
+}
+
+.ly-pagination__jumper input {
+  width: 3rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--ly-border-color);
+  border-radius: var(--ly-radius);
+  text-align: center;
+  font-size: inherit;
+  outline: none;
+}
+
+.ly-pagination__jumper input:focus {
+  border-color: var(--ly-border-focus);
+}
+
+/* Sizes */
+.ly-pagination--sm .ly-pagination__item {
+  min-width: 1.75rem;
+  height: 1.75rem;
+  font-size: var(--ly-font-size-xs);
+}
+
+.ly-pagination--lg .ly-pagination__item {
+  min-width: 2.5rem;
+  height: 2.5rem;
+  font-size: var(--ly-font-size);
+}
+
+/* Simple */
+.ly-pagination--simple .ly-pagination__controls {
+  gap: var(--ly-spacing-xs);
+}
+
+.ly-pagination--simple .ly-pagination__ellipsis {
+  display: none;
+}

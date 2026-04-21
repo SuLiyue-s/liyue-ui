@@ -1,0 +1,79 @@
+.ly-form {
+  display: flex;
+  width: 100%;
+}
+
+.ly-form--vertical {
+  flex-direction: column;
+  gap: var(--ly-spacing-md);
+}
+
+.ly-form--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--ly-spacing-md);
+}
+
+.ly-form--inline {
+  flex-direction: row;
+  gap: var(--ly-spacing-md);
+}
+
+/* Form Item */
+.ly-form-item {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.ly-form--horizontal .ly-form-item {
+  flex-direction: row;
+  align-items: center;
+}
+
+.ly-form--vertical .ly-form-item {
+  flex-direction: column;
+}
+
+.ly-form-item__label {
+  display: flex;
+  align-items: center;
+  padding-right: var(--ly-spacing-sm);
+  font-size: var(--ly-font-size-sm);
+  color: var(--ly-text-secondary);
+  white-space: nowrap;
+}
+
+.ly-form--horizontal .ly-form-item__label {
+  justify-content: flex-end;
+}
+
+.ly-form--horizontal .ly-form-item__control {
+  flex: 1;
+}
+
+.ly-form-item__required {
+  color: var(--ly-danger);
+  margin-right: 0.25rem;
+}
+
+.ly-form-item__control {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+}
+
+.ly-form-item__error {
+  margin-top: 0.25rem;
+  font-size: var(--ly-font-size-xs);
+  color: var(--ly-danger);
+}
+
+.ly-form-item--error .ly-input__wrapper {
+  border-color: var(--ly-danger);
+}
+
+.ly-form-item--error .ly-input__wrapper:focus-within {
+  box-shadow: 0 0 0 3px var(--ly-danger-light);
+}

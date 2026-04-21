@@ -1,0 +1,111 @@
+.ly-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--ly-spacing-sm);
+  width: 100%;
+}
+
+.ly-progress__track {
+  flex: 1;
+  height: var(--ly-progress-height);
+  background-color: var(--ly-bg-tertiary);
+  border-radius: var(--ly-radius-full);
+  overflow: hidden;
+}
+
+.ly-progress--sm .ly-progress__track {
+  height: var(--ly-progress-height-sm);
+}
+
+.ly-progress--lg .ly-progress__track {
+  height: var(--ly-progress-height-lg);
+}
+
+.ly-progress__bar {
+  height: 100%;
+  border-radius: var(--ly-radius-full);
+  transition: width var(--ly-transition-slow);
+}
+
+.ly-progress--animated .ly-progress__bar {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+  animation: progressStripes 1s linear infinite;
+}
+
+@keyframes progressStripes {
+  0% {
+    background-position: 1rem 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.ly-progress__text {
+  flex-shrink: 0;
+  font-size: var(--ly-font-size-sm);
+  color: var(--ly-text-secondary);
+  min-width: 3rem;
+  text-align: right;
+}
+
+/* Circle & Dashboard */
+.ly-progress--circle,
+.ly-progress--dashboard {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+}
+
+.ly-progress__circle {
+  transform: rotate(0deg);
+}
+
+.ly-progress--dashboard .ly-progress__circle {
+  transform: rotate(180deg);
+}
+
+.ly-progress__circle-trail {
+  opacity: 0.3;
+}
+
+.ly-progress__circle-progress {
+  transition: stroke-dashoffset var(--ly-transition-slow);
+}
+
+/* Status */
+.ly-progress--success .ly-progress__bar,
+.ly-progress--success .ly-progress__circle-progress {
+  background-color: var(--ly-success);
+  stroke: var(--ly-success);
+}
+
+.ly-progress--exception .ly-progress__bar,
+.ly-progress--exception .ly-progress__circle-progress {
+  background-color: var(--ly-danger);
+  stroke: var(--ly-danger);
+}
+
+.ly-progress--circle .ly-progress__text,
+.ly-progress--dashboard .ly-progress__text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 0;
+  font-size: var(--ly-font-size-md);
+  font-weight: var(--ly-font-weight-semibold);
+  color: var(--ly-text-primary);
+}

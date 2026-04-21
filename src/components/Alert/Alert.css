@@ -1,0 +1,108 @@
+.ly-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ly-spacing-sm);
+  padding: var(--ly-spacing-md);
+  border-radius: var(--ly-radius);
+  border: 1px solid;
+  animation: slideDown var(--ly-transition) ease-out;
+}
+
+.ly-alert__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.ly-alert__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ly-alert__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.ly-alert__message {
+  color: var(--ly-text-primary);
+  font-size: var(--ly-font-size-sm);
+  font-weight: var(--ly-font-weight-medium);
+}
+
+.ly-alert__message--large {
+  font-size: var(--ly-font-size-md);
+  font-weight: var(--ly-font-weight-semibold);
+}
+
+.ly-alert__description {
+  margin-top: 0.25rem;
+  color: var(--ly-text-secondary);
+  font-size: var(--ly-font-size-sm);
+}
+
+.ly-alert__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ly-text-tertiary);
+  border-radius: var(--ly-radius-sm);
+  transition: all var(--ly-transition);
+  flex-shrink: 0;
+}
+
+.ly-alert__close:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--ly-text-primary);
+}
+
+.ly-alert__close svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Types */
+.ly-alert--success {
+  background-color: var(--ly-success-light);
+  border-color: var(--ly-success);
+}
+
+.ly-alert--success .ly-alert__icon {
+  color: var(--ly-success);
+}
+
+.ly-alert--info {
+  background-color: var(--ly-info-light);
+  border-color: var(--ly-info);
+}
+
+.ly-alert--info .ly-alert__icon {
+  color: var(--ly-info);
+}
+
+.ly-alert--warning {
+  background-color: var(--ly-warning-light);
+  border-color: var(--ly-warning);
+}
+
+.ly-alert--warning .ly-alert__icon {
+  color: var(--ly-warning);
+}
+
+.ly-alert--error {
+  background-color: var(--ly-danger-light);
+  border-color: var(--ly-danger);
+}
+
+.ly-alert--error .ly-alert__icon {
+  color: var(--ly-danger);
+}

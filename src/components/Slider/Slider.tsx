@@ -70,7 +70,6 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
     });
 
     const [isDragging, setIsDragging] = useState(false);
-    const [draggingThumb, setDraggingThumb] = useState<'start' | 'end' | null>(null);
 
     const isControlled = value !== undefined;
     const isRangeControlled = rangeValue !== undefined;
@@ -108,7 +107,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
       e.preventDefault();
       setIsDragging(true);
       if (range && thumb) {
-        setDraggingThumb(thumb);
+        // draggingThumb thumb;
       }
 
       const handleMouseMove = (moveEvent: MouseEvent) => {
@@ -135,7 +134,6 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
 
       const handleMouseUp = () => {
         setIsDragging(false);
-        setDraggingThumb(null);
         document.removeEventListener('mousemove', handleMouseMove);
         document.removeEventListener('mouseup', handleMouseUp);
         onAfterChange?.(range ? internalRangeValue : internalValue);
@@ -163,19 +161,6 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
       if (className) classList.push(className);
       return classList.join(' ');
     }, [size, disabled, isDragging, className]);
-
-    const trackStyle = useMemo(() => {
-      if (range) {
-        const [start, end] = currentValue as [number, number];
-        return {
-          '--ly-slider-start': `${getPercentage(start)}%`,
-          '--ly-slider-end': `${getPercentage(end)}%`,
-        } as React.CSSProperties;
-      }
-      return {
-        '--ly-slider-progress': `${getPercentage(currentValue as number)}%`,
-      } as React.CSSProperties;
-    }, [range, currentValue]);
 
     return (
       <div ref={ref} className={classes} style={style}>

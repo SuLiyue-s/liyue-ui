@@ -3,15 +3,12 @@ import {
   Button,
   Input,
   Select,
-  Checkbox,
   CheckboxGroup,
-  Radio,
   RadioGroup,
   Switch,
   Slider,
   Container,
   Grid,
-  GridItem,
   Flex,
   Stack,
   Divider,
@@ -21,23 +18,21 @@ import {
   Badge,
   Tag,
   Progress,
-  Skeleton,
   Menu,
   Tabs,
   Breadcrumb,
   Pagination,
   Steps,
   Modal,
-  I18nProvider,
-  useI18n,
   Drawer,
   ToastProvider,
   useToast,
   Alert,
   Tooltip,
-  Form,
-  FormItem,
 } from './components';
+import { Form, FormItem } from './components/Form';
+import { TextArea } from './components/Input';
+import { I18nProvider, useI18n } from './i18n';
 import './styles/variables.css';
 import './styles/base.css';
 import './styles/theme.css';
@@ -199,14 +194,14 @@ function DemoApp() {
               <Switch />
               <Switch checked />
               <Switch disabled />
-              <Switch showText activeText="ON" inactiveText="OFF" />
+              <Switch activeText="ON" inactiveText="OFF" />
             </Stack>
           </div>
           <div>
             <h4>滑块</h4>
             <Stack direction="vertical" gap="md">
               <Slider defaultValue={50} />
-              <Slider range defaultValue={[20, 80]} />
+              <Slider range defaultRangeValue={[20, 80]} />
               <Slider showInput defaultValue={30} />
             </Stack>
           </div>
@@ -215,7 +210,15 @@ function DemoApp() {
 
       {/* 表格 */}
       <Card title="表格 Table" style={{ marginBottom: '1rem' }}>
-        <Table columns={tableColumns} dataSource={tableData} bordered striped />
+        <Table 
+          columns={tableColumns.map(col => ({
+            ...col,
+            dataIndex: col.dataIndex || 'key'
+          }))} 
+          dataSource={tableData} 
+          bordered 
+          striped 
+        />
       </Card>
 
       {/* 卡片 */}
@@ -386,7 +389,7 @@ function DemoApp() {
             <Input type="password" placeholder="请输入密码" />
           </FormItem>
           <FormItem label="简介" name="bio">
-            <Input.TextArea placeholder="请输入简介" />
+            <TextArea placeholder="请输入简介" />
           </FormItem>
           <Button type="primary" htmlType="submit">提交</Button>
         </Form>

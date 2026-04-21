@@ -1,5 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
 import './Table.css';
+import { useI18n } from '../../i18n/index';
 
 export interface TableColumn<T = any> {
   /** 列标题 */
@@ -82,6 +83,7 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(
     },
     ref
   ) => {
+    const { t } = useI18n();
     const visibleColumns = useMemo(() => {
       return columns.filter(col => !col.hidden);
     }, [columns]);
@@ -104,7 +106,7 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(
       return classList.join(' ');
     };
 
-    const handleRowClick = (record: any, index: number, e: React.MouseEvent) => {
+    const handleRowClick = (record: any, index: number, _e: React.MouseEvent) => {
       if (rowSelection?.getCheckboxProps?.(record)?.disabled) return;
       onRowClick?.(record, index);
     };
@@ -132,7 +134,7 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(
     const isSelected = (record: any) => {
       if (!rowSelection?.selectedRowKeys) return false;
       const key = record.id ?? record.key ?? dataSource.indexOf(record);
-      return rowSelection.selectedRowKeys.includes(key);
+      return (rowSelection.selectedRowKeys as any[]).includes(key);
     };
 
     const handleSelectAll = (checked: boolean) => {
@@ -156,7 +158,7 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(
         : (rowSelection.selectedRowKeys || []).filter(k => k !== key);
       const selectedRows = dataSource.filter(row => {
         const rowKey = row.id ?? row.key ?? dataSource.indexOf(row);
-        return selectedKeys.includes(rowKey);
+        return (selectedKeys as any[]).includes(rowKey);
       });
       rowSelection.onChange?.(selectedKeys, selectedRows);
     };
@@ -168,7 +170,7 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(
       );
       if (selectableRows.length === 0) return false;
       const selectableKeys = selectableRows.map((row, index) => row.id ?? row.key ?? index);
-      return selectableKeys.every(key => rowSelection.selectedRowKeys?.includes(key));
+      return selectableKeys.every(key => (rowSelection.selectedRowKeys as any[])?.includes(key));
     }, [dataSource, rowSelection]);
 
     const someSelected = useMemo(() => {
@@ -178,7 +180,7 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(
         row => !rowSelection.getCheckboxProps?.(row)?.disabled
       );
       const selectableKeys = selectableRows.map((row, index) => row.id ?? row.key ?? index);
-      return selectableKeys.some(key => rowSelection.selectedRowKeys?.includes(key));
+      return selectableKeys.some(key => (rowSelection.selectedRowKeys as any[])?.includes(key));
     }, [dataSource, rowSelection, allSelected]);
 
     return (

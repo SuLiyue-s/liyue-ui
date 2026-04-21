@@ -1,9 +1,11 @@
 import React, { forwardRef, useMemo } from 'react';
 import './Button.css';
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
   /** 按钮类型 */
   type?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'link' | 'text';
+  /** 原生 button type 属性 */
+  htmlType?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
   /** 按钮大小 */
   size?: 'sm' | 'md' | 'lg';
   /** 是否为朴素按钮 */
@@ -34,6 +36,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       type = 'primary',
+      htmlType,
       size = 'md',
       plain = false,
       round = false,
@@ -121,6 +124,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={classes}
         style={buttonStyle}
         disabled={isDisabled}
+        type={htmlType}
         {...props}
       >
         {content}

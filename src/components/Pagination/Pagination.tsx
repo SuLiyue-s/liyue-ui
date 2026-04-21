@@ -1,6 +1,6 @@
 import React, { forwardRef, useMemo } from 'react';
 import './Pagination.css';
-import { useI18n } from '../../i18n';
+import { useI18n } from '../../i18n/index';
 
 export interface PaginationProps {
   /** 当前页码 */

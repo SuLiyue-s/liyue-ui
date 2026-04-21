@@ -39,11 +39,11 @@ export const Breadcrumb = forwardRef<HTMLDivElement, BreadcrumbProps>(
     },
     ref
   ) => {
-    const displayItems = useMemo(() => {
+    const displayItems = useMemo((): BreadcrumbItem[] => {
       if (maxCount && items.length > maxCount) {
         const first = items[0];
         const last = items[items.length - 1];
-        const middle = { title: '...' };
+        const middle: BreadcrumbItem = { title: '...' };
         return [first, middle, last];
       }
       return items;

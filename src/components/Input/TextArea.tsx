@@ -1,7 +1,7 @@
-import React, { forwardRef, useMemo } from 'react';
+import React, { forwardRef } from 'react';
 import './Input.css';
 
-export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface TextAreaProps {
   /** 行数 */
   rows?: number;
   /** 是否自动调整高度 */
@@ -18,6 +18,16 @@ export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   className?: string;
   /** 自定义样式 */
   style?: React.CSSProperties;
+  /** 值 */
+  value?: string;
+  /** 默认值 */
+  defaultValue?: string;
+  /** 变化回调 */
+  onChange?: React.FormEventHandler<HTMLTextAreaElement>;
+  /** 占位符 */
+  placeholder?: string;
+  /** 禁用 */
+  disabled?: boolean;
 }
 
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
@@ -34,7 +44,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       value,
       defaultValue,
       onChange,
-      ...props
+      placeholder,
+      disabled = false,
     },
     ref
   ) => {
@@ -68,37 +79,25 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       onChange?.(e);
     };
 
-    const classes = useMemo(() => {
-      const classList = ['ly-textarea'];
-      if (!bordered) classList.push('ly-textarea--borderless');
-      if (className) classList.push(className);
-      return classList.join(' ');
-    }, [bordered, className]);
+    const classes = ['ly-textarea'];
+    if (!bordered) classes.push('ly-textarea--borderless');
+    if (className) classes.push(className);
 
-    const textareaStyle = useMemo(() => {
-      const customStyle: React.CSSProperties = { ...style };
-      if (width) {
-        customStyle.width = typeof width === 'number' ? `${width}px` : width;
-      }
-      return customStyle;
-    }, [width, style]);
+    const textareaStyle = {
+      ...style,
+      width: width ? (typeof width === 'number' ? `${width}px` : width) : undefined,
+    };
 
     return (
       <textarea
-        ref={(el) => {
-          (textareaRef as React.MutableRefObject<HTMLTextAreaElement | null>).current = el;
-          if (typeof ref === 'function') {
-            ref(el);
-          } else if (ref) {
-            ref.current = el;
-          }
-        }}
-        className={classes}
+        ref={textareaRef}
+        className={classes.join(' ')}
         style={textareaStyle}
         rows={autoSize ? minRows || rows : rows}
         value={currentValue}
         onChange={handleChange}
-        {...props}
+        placeholder={placeholder}
+        disabled={disabled}
       />
     );
   }

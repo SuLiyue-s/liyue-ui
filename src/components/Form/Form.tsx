@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback, useMemo, forwardRef } from 'react';
+import React, { createContext, useContext, useState, useCallback, forwardRef } from 'react';
 import './Form.css';
 
 export interface FormItemProps {
@@ -68,9 +68,9 @@ export interface FormContextValue {
   errors: Record<string, string>;
   touched: Record<string, boolean>;
   disabled: boolean;
-  labelWidth: string | number;
-  labelAlign: 'left' | 'right' | 'center';
-  layout: 'horizontal' | 'vertical' | 'inline';
+  labelWidth?: string | number;
+  labelAlign?: 'left' | 'right' | 'center';
+  layout?: 'horizontal' | 'vertical' | 'inline';
   registerField: (name: string, field: { value: any; rules?: ValidationRule[]; required?: boolean }) => void;
   unregisterField: (name: string) => void;
   setFieldValue: (name: string, value: any) => void;
@@ -263,7 +263,7 @@ export const Form = forwardRef<HTMLFormElement, FormProps>(
       resetFields();
     }, [resetFields]);
 
-    const contextValue = useMemo(() => ({
+    const contextValue = {
       values,
       errors,
       touched,
@@ -279,17 +279,14 @@ export const Form = forwardRef<HTMLFormElement, FormProps>(
       validateField,
       validateAll,
       resetFields,
-    }), [values, errors, touched, disabled, labelWidth, labelAlign, layout, registerField, unregisterField, setFieldValue, setFieldError, setFieldTouched, validateField, validateAll, resetFields]);
+    };
 
-    const classes = useMemo(() => {
-      const classList = ['ly-form', `ly-form--${layout}`];
-      if (className) classList.push(className);
-      return classList.join(' ');
-    }, [layout, className]);
+    const classes = ['ly-form', `ly-form--${layout}`];
+    if (className) classes.push(className);
 
     return (
       <FormContext.Provider value={contextValue}>
-        <form ref={ref} className={classes} style={style} onSubmit={handleSubmit} onReset={handleReset}>
+        <form ref={ref} className={classes.join(' ')} style={style} onSubmit={handleSubmit} onReset={handleReset}>
           {children}
         </form>
       </FormContext.Provider>
@@ -309,7 +306,7 @@ export const FormItem = forwardRef<HTMLDivElement, FormItemProps>(
       disabled,
       children,
       className = '',
-      style,
+      style
     },
     ref
   ) => {
@@ -344,10 +341,7 @@ export const FormItem = forwardRef<HTMLDivElement, FormItemProps>(
       }
     };
 
-    const validateField = (fieldName: string, value: any) => {
-      const field = context?.touched[fieldName];
-      if (!field) return;
-
+    const validateField = (_fieldName: string, value: any) => {
       const fieldRules = rules || [];
       for (const rule of fieldRules) {
         const error = validateRule(value, rule);
@@ -384,19 +378,11 @@ export const FormItem = forwardRef<HTMLDivElement, FormItemProps>(
     const displayError = error || internalError;
     const isRequired = required || rules?.some(r => r.required);
 
-    const labelStyle = useMemo(() => {
-      if (context?.labelWidth) {
-        return { width: context.labelWidth };
-      }
-      return {};
-    }, [context?.labelWidth]);
+    const labelStyle = context?.labelWidth ? { width: context.labelWidth } : {};
 
-    const classes = useMemo(() => {
-      const classList = ['ly-form-item'];
-      if (displayError) classList.push('ly-form-item--error');
-      if (className) classList.push(className);
-      return classList.join(' ');
-    }, [displayError, className]);
+    const classes = ['ly-form-item'];
+    if (displayError) classes.push('ly-form-item--error');
+    if (className) classes.push(className);
 
     const child = React.Children.only(children);
     const childWithProps = React.isValidElement(child)
@@ -408,7 +394,7 @@ export const FormItem = forwardRef<HTMLDivElement, FormItemProps>(
       : children;
 
     return (
-      <div ref={ref} className={classes} style={style}>
+      <div ref={ref} className={classes.join(' ')} style={style}>
         {label && (
           <label className="ly-form-item__label" style={labelStyle}>
             {isRequired && <span className="ly-form-item__required">*</span>}

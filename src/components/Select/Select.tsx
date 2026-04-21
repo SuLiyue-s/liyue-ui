@@ -1,6 +1,5 @@
 import React, { forwardRef, useMemo, useState, useRef, useEffect } from 'react';
 import './Select.css';
-import { useI18n } from '../../i18n';
 
 export interface SelectOption {
   label: string;
@@ -70,6 +69,8 @@ export const Select = forwardRef<SelectRef, SelectProps>(
       className = '',
       style,
       onChange,
+      emptyText,
+      maxTagText,
     },
     ref
   ) => {
@@ -161,7 +162,7 @@ export const Select = forwardRef<SelectRef, SelectProps>(
       if (selectedOptions.length === 0) return '';
       if (multiple) {
         if (maxTagCount && selectedOptions.length > maxTagCount) {
-          return maxTagText || t('select.maxTag', { count: selectedOptions.length });
+          return maxTagText || `已选择 ${selectedOptions.length} 项`;
         }
         return selectedOptions.map(opt => opt.label).join(', ');
       }
@@ -201,7 +202,7 @@ export const Select = forwardRef<SelectRef, SelectProps>(
             />
           ) : (
             <span className="ly-select__value">
-              {displayValue() || <span className="ly-select__placeholder">{placeholderText}</span>}
+              {displayValue() || <span className="ly-select__placeholder">{placeholder}</span>}
             </span>
           )}
           {clearable && selectedValues.length > 0 && (
@@ -224,7 +225,7 @@ export const Select = forwardRef<SelectRef, SelectProps>(
             style={dropdownWidth ? { width: typeof dropdownWidth === 'number' ? `${dropdownWidth}px` : dropdownWidth } : undefined}
           >
             {filteredOptions.length === 0 ? (
-              <div className="ly-select__empty">{emptyText || t('select.noData')}</div>
+              <div className="ly-select__empty">{emptyText || '暂无数据'}</div>
             ) : (
               filteredOptions.map((option) => (
                 <div

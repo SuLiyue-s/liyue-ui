@@ -54,7 +54,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(
       openKeys,
       defaultOpenKeys = [],
       mode = 'vertical',
-      multiple = false,
+      multiple: _multiple = false,
       theme = 'light',
       inlineIndent = 1.5,
       subMenuOpenType = 'click',

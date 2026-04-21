@@ -40,19 +40,25 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
     const [visible, setVisible] = useState(false);
     const triggerRef = useRef<HTMLDivElement>(null);
     const tooltipRef = useRef<HTMLDivElement>(null);
-    const showTimer = useRef<NodeJS.Timeout>();
-    const hideTimer = useRef<NodeJS.Timeout>();
+    const showTimer = useRef<number | null>(null);
+    const hideTimer = useRef<number | null>(null);
 
     const show = () => {
-      clearTimeout(hideTimer.current);
-      showTimer.current = setTimeout(() => {
+      if (hideTimer.current !== null) {
+        clearTimeout(hideTimer.current);
+        hideTimer.current = null;
+      }
+      showTimer.current = window.setTimeout(() => {
         setVisible(true);
       }, mouseEnterDelay);
     };
 
     const hide = () => {
-      clearTimeout(showTimer.current);
-      hideTimer.current = setTimeout(() => {
+      if (showTimer.current !== null) {
+        clearTimeout(showTimer.current);
+        showTimer.current = null;
+      }
+      hideTimer.current = window.setTimeout(() => {
         setVisible(false);
       }, mouseLeaveDelay);
     };
@@ -81,8 +87,8 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
 
     useEffect(() => {
       return () => {
-        clearTimeout(showTimer.current);
-        clearTimeout(hideTimer.current);
+        if (showTimer.current !== null) clearTimeout(showTimer.current);
+        if (hideTimer.current !== null) clearTimeout(hideTimer.current);
       };
     }, []);
 

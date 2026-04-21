@@ -108,7 +108,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
       } else if (height && (placement === 'top' || placement === 'bottom')) {
         customStyle.height = typeof height === 'number' ? `${height}px` : height;
       } else {
-        customStyle[size] = sizeMap[size];
+        customStyle.width = sizeMap[size];
       }
       return customStyle;
     }, [width, height, placement, size, style]);

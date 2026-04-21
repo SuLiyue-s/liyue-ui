@@ -50,7 +50,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
       tabPosition = 'top',
       type = 'line',
       size = 'md',
-      animated = true,
+      animated: _animated = true,
       onChange,
       onTabClick,
       className = '',

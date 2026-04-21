@@ -52,7 +52,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
       animated = true,
       size = 'md',
       onClose,
-      afterClose,
+      afterClose: _afterClose,
       className = '',
       style,
     },

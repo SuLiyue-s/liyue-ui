@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback, useMemo, useRef, useEffect } from 'react';
+import React, { createContext, useContext, useState, useCallback, useMemo, useRef } from 'react';
 import './Toast.css';
 
 export interface ToastItem {
@@ -14,6 +14,7 @@ export interface ToastItem {
 export interface ToastProps {
   maxCount?: number;
   position?: 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right';
+  children?: React.ReactNode;
 }
 
 export interface ToastContextValue {

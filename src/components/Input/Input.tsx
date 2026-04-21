@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo } from 'react';
 import './Input.css';
 
-export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface InputProps {
   /** 输入框大小 */
   size?: 'sm' | 'md' | 'lg';
   /** 输入框类型 */
@@ -26,6 +26,16 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
   className?: string;
   /** 自定义样式 */
   style?: React.CSSProperties;
+  /** 值 */
+  value?: string;
+  /** 默认值 */
+  defaultValue?: string;
+  /** 变化回调 */
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  /** 占位符 */
+  placeholder?: string;
+  /** 禁用 */
+  disabled?: boolean;
 }
 
 export interface InputRef {
@@ -52,6 +62,8 @@ export const Input = forwardRef<InputRef, InputProps>(
       value,
       defaultValue,
       onChange,
+      placeholder,
+      disabled = false,
       ...props
     },
     ref
@@ -81,17 +93,14 @@ export const Input = forwardRef<InputRef, InputProps>(
       if (!isControlled) {
         setInternalValue('');
       }
-      const event = new Event('change', { bubbles: true });
-      const target = inputRef.current || document.createElement('input');
       if (inputRef.current) {
         inputRef.current.value = '';
-        inputRef.current.dispatchEvent(event);
+        inputRef.current.dispatchEvent(new Event('change', { bubbles: true }));
       }
       onChange?.({
-        ...event,
-        target: inputRef.current || target,
-        currentTarget: inputRef.current || target,
-      } as React.ChangeEvent<HTMLInputElement>);
+        target: inputRef.current || document.createElement('input'),
+        currentTarget: inputRef.current || document.createElement('input'),
+      } as any);
     };
 
     const togglePasswordVisibility = () => {
@@ -135,6 +144,8 @@ export const Input = forwardRef<InputRef, InputProps>(
             type={inputType}
             value={currentValue}
             onChange={handleChange}
+            placeholder={placeholder}
+            disabled={disabled}
             {...props}
           />
           {showClearButton && (
@@ -154,7 +165,7 @@ export const Input = forwardRef<InputRef, InputProps>(
                 </svg>
               ) : (
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <path d="M1 12s4-8 11-8 11 8 11 8-8 11-8 8z" />
                   <circle cx="12" cy="12" r="3" />
                 </svg>
               )}

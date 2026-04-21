@@ -238,12 +238,15 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(
     },
     ref
   ) => {
-    const stackStyle = useMemo(() => {
-      return {
-        ...style,
+    const stackStyle = useMemo((): React.CSSProperties => {
+      const customStyle: React.CSSProperties = {
         flexDirection: direction === 'horizontal' ? 'row' : 'column',
         gap: typeof gap === 'number' ? `${gap}px` : gap,
       };
+      if (style) {
+        Object.assign(customStyle, style);
+      }
+      return customStyle;
     }, [direction, gap, style]);
 
     const childArray = React.Children.toArray(children).filter(Boolean);

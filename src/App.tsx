@@ -241,7 +241,7 @@ function DemoApp() {
       <Card title="头像、徽标和标签 Avatar & Badge & Tag" style={{ marginBottom: '1rem' }}>
         <Flex gap="lg" align="center">
           <Avatar>张</Avatar>
-          <Avatar src="https://via.placeholder.com/100" />
+          <Avatar src="https://picsum.photos/100" />
           <Avatar size="lg" icon="👤" />
           <Badge count={5}>
             <div style={{ width: 40, height: 40, background: '#f0f0f0', borderRadius: 4 }} />

@@ -113,6 +113,8 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
       return customStyle;
     }, [width, height, placement, size, style]);
 
+    if (!open) return null;
+
     return (
       <div ref={ref} className={classes}>
         {mask && (

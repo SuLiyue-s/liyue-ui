@@ -14,6 +14,12 @@
   animation: fadeIn var(--ly-transition);
 }
 
+.ly-tooltip__popper::after {
+  content: '';
+  position: absolute;
+  border: 0.375rem solid transparent;
+}
+
 .ly-tooltip__content {
   padding: 0.5rem 0.75rem;
   background-color: var(--ly-text-primary);
@@ -23,11 +29,12 @@
   max-width: var(--ly-tooltip-max-width);
   word-wrap: break-word;
   line-height: 1.4;
+  white-space: normal;
 }
 
 .ly-tooltip__content span {
   display: inline;
-  writing-mode: horizontal-tb;
+  writing-mode: horizontal-tb !important;
   text-orientation: mixed;
   unicode-bidi: normal;
   direction: ltr;
@@ -136,5 +143,24 @@
 .ly-tooltip__popper--bottom-right::after {
   bottom: 100%;
   right: 1rem;
+  margin-top: 0.5rem;
   border-bottom-color: var(--ly-text-primary);
+}
+
+/* 竖向展示样式 - 只影响内容区域，不影响箭头 */
+.ly-tooltip__popper--vertical .ly-tooltip__content {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  unicode-bidi: normal;
+  direction: ltr;
+  white-space: nowrap;
+}
+
+.ly-tooltip__popper--vertical .ly-tooltip__content span {
+  display: inline;
+  writing-mode: vertical-rl !important;
+  text-orientation: mixed;
+  unicode-bidi: normal;
+  direction: ltr;
+  white-space: nowrap;
 }

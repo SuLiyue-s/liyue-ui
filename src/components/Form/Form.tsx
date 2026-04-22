@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback, forwardRef } from 'react';
+import React, { createContext, useContext, useState, useCallback, useMemo, useRef, forwardRef } from 'react';
 import './Form.css';
 
 export interface FormItemProps {
@@ -263,7 +263,7 @@ export const Form = forwardRef<HTMLFormElement, FormProps>(
       resetFields();
     }, [resetFields]);
 
-    const contextValue = {
+    const contextValue = useMemo(() => ({
       values,
       errors,
       touched,
@@ -279,7 +279,7 @@ export const Form = forwardRef<HTMLFormElement, FormProps>(
       validateField,
       validateAll,
       resetFields,
-    };
+    }), [values, errors, touched, disabled, labelWidth, labelAlign, layout, registerField, unregisterField, setFieldValue, setFieldError, setFieldTouched, validateField, validateAll, resetFields]);
 
     const classes = ['ly-form', `ly-form--${layout}`];
     if (className) classes.push(className);
@@ -311,21 +311,22 @@ export const FormItem = forwardRef<HTMLDivElement, FormItemProps>(
     ref
   ) => {
     const context = useFormContext();
+    const contextRef = useRef(context);
+    contextRef.current = context;
     const [internalError, setInternalError] = useState<string>('');
 
     React.useEffect(() => {
-      if (name && context) {
-        context.registerField(name, { value: initialValue, rules, required });
-        if (initialValue !== undefined) {
-          context.setFieldValue(name, initialValue);
-        }
+      const currentContext = contextRef.current;
+      if (name && currentContext) {
+        currentContext.registerField(name, { value: initialValue, rules, required });
       }
       return () => {
-        if (name && context) {
-          context.unregisterField(name);
+        const cleanupContext = contextRef.current;
+        if (name && cleanupContext) {
+          cleanupContext.unregisterField(name);
         }
       };
-    }, [name, initialValue, rules, required, context]);
+    }, [name, initialValue, rules, required]);
 
     React.useEffect(() => {
       if (context) {
@@ -334,9 +335,10 @@ export const FormItem = forwardRef<HTMLDivElement, FormItemProps>(
     }, [context, name, error]);
 
     const handleChange = (value: any) => {
-      if (name && context) {
-        context.setFieldValue(name, value);
-        context.setFieldTouched(name, true);
+      const currentContext = contextRef.current;
+      if (name && currentContext) {
+        currentContext.setFieldValue(name, value);
+        currentContext.setFieldTouched(name, true);
         validateField(name, value);
       }
     };

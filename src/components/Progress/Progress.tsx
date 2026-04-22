@@ -74,8 +74,10 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
 
     if (type === 'circle' || type === 'dashboard') {
       const sizeMap = { sm: 60, md: 80, lg: 100 };
+      const strokeWidthMap = { sm: 4, md: 6, lg: 8 };
       const circleSize = sizeMap[size];
-      const radius = (circleSize - strokeWidth!) / 2;
+      const actualStrokeWidth = strokeWidth ?? strokeWidthMap[size];
+      const radius = (circleSize - actualStrokeWidth) / 2;
       const circumference = 2 * Math.PI * radius;
       const strokeDashoffset = circumference - (percent / 100) * circumference;
 
@@ -89,7 +91,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
               r={radius}
               fill="none"
               stroke={trailColor || 'var(--ly-bg-tertiary)'}
-              strokeWidth={strokeWidth}
+              strokeWidth={actualStrokeWidth}
             />
             <circle
               className="ly-progress__circle-progress"
@@ -98,7 +100,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
               r={radius}
               fill="none"
               stroke={getStrokeColor()}
-              strokeWidth={strokeWidth}
+              strokeWidth={actualStrokeWidth}
               strokeLinecap="round"
               strokeDasharray={circumference}
               strokeDashoffset={strokeDashoffset}

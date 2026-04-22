@@ -126,6 +126,19 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
       return customStyle;
     }, [maxWidth, style]);
 
+    const isVertical = placement === 'left' || placement === 'right';
+
+    const contentStyle = useMemo((): React.CSSProperties => {
+      if (isVertical) {
+        return {
+          whiteSpace: 'nowrap' as const
+        };
+      }
+      return {
+        whiteSpace: 'normal' as const
+      };
+    }, [isVertical]);
+
     return (
       <div ref={ref} className={classes}>
         <div
@@ -142,20 +155,13 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
         {visible && (
           <div
             ref={tooltipRef}
-            className={`ly-tooltip__popper ly-tooltip__popper--${placement}`}
+            className={`ly-tooltip__popper ly-tooltip__popper--${placement}${isVertical ? ' ly-tooltip__popper--vertical' : ''}`}
             style={tooltipStyle}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
             <div className="ly-tooltip__content">
-              <span style={{
-                display: 'inline',
-                writingMode: 'horizontal-tb' as const,
-                textOrientation: 'mixed' as const,
-                unicodeBidi: 'normal' as const,
-                direction: 'ltr' as const,
-                whiteSpace: 'normal' as const
-              }}>
+              <span style={contentStyle}>
                 {content}
               </span>
             </div>

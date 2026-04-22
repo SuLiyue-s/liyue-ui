@@ -14,17 +14,202 @@
 - 📱 **响应式设计** - 组件支持多种尺寸和响应式布局
 - ♿ **无障碍支持** - 遵循 WAI-ARIA 标准
 
+## 常见问题
+
+### 如何自定义主题颜色？
+
+可以通过覆盖 CSS 变量来定制主题：
+
+```css
+:root {
+  --ly-primary: #1890ff;
+  --ly-primary-hover: #40a9ff;
+  --ly-primary-active: #096dd9;
+}
+```
+
+### 如何使用暗色主题？
+
+```tsx
+// 在 App 根组件上设置 data-theme 属性
+function App() {
+  return (
+    <div data-theme="dark">
+      <YourContent />
+    </div>
+  );
+}
+```
+
+### 如何贡献代码？
+
+1. Fork 本仓库
+2. 创建你的特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交你的更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 创建 Pull Request
+
+## 更新日志
+
+详见 [CHANGELOG](./CHANGELOG.md)（如果存在）
+
+## 许可证
+
+本项目基于 MIT 许可证开源 - 详见 [LICENSE](./LICENSE) 文
+## 环境要求
+
+- **Node.js**: >= 16.0.0
+- **npm**: >= 8.0.0 (推荐使用最新版本)
+- **React**: >= 16.8.0
+- **TypeScript**: >= 5.0.0
+
 ## 安装
 
+### 作为项目依赖安装（推荐）
+
+如果你想在项目中使用 LiYue UI，可以将其作为依赖安装：
+
 ```bash
+# 使用 npm 安装
 npm install liyue-ui
-# 或
+
+# 或使用 yarn 安装
 yarn add liyue-ui
-# 或
+
+# 或使用 pnpm 安装
 pnpm add liyue-ui
 ```
 
+### 克隆并本地运行开发版本
+
+如果你想参与组件库的开发和贡献：
+
+```bash
+# 1. 克隆仓库
+git clone https://github.com/your-username/liyue-ui.git
+
+# 2. 进入项目目录
+cd liyue-ui
+
+# 3. 安装依赖
+npm install
+
+# 4. 启动开发服务器
+npm run dev
+
+# 5. 在浏览器中访问
+# 开发服务器会在 http://localhost:5173 启动
+```
+
+## 项目脚本
+
+本项目提供了以下 npm 脚本：
+
+### 开发环境
+
+```bash
+# 启动开发服务器（热重载）
+npm run dev
+
+# 预览生产构建（预览构建后的效果）
+npm run preview
+```
+
+### 构建
+
+```bash
+# 构建库版本（用于发布到 npm）
+npm run build
+
+# 执行类型检查
+npm run typecheck
+
+# 测试环境配置
+npm run test:env
+```
+
+### 构建说明
+
+**开发环境构建 (`npm run dev`)：**
+- 使用 Vite 的开发服务器
+- 支持热模块替换（HMR）
+- 代码修改后自动刷新
+- 适合开发和调试组件
+
+**生产环境构建 (`npm run build`)：**
+- 优化代码，移除开发注释和调试代码
+- 压缩 JavaScript 和 CSS
+- 生成 TypeScript 类型定义文件
+- 输出目录：`dist/`
+  - `dist/index.js` - CommonJS 版本
+  - `dist/index.esm.js` - ES Modules 版本
+  - `dist/index.d.ts` - TypeScript 类型定义
+  - `dist/styles/` - CSS 样式文件
+
+**预览构建 (`npm run preview`)：**
+- 在本地服务器上预览生产构建
+- 用于测试构建后的组件库是否正常工作
+
+## 目录结构
+
+```
+liyue-ui/
+├── src/                          # 源代码目录
+│   ├── components/               # 组件目录
+│   │   ├── Alert/               # 警告提示组件
+│   │   ├── Avatar/              # 头像组件
+│   │   ├── Badge/               # 徽章组件
+│   │   ├── Breadcrumb/          # 面包屑导航
+│   │   ├── Button/              # 按钮组件
+│   │   ├── Card/                # 卡片组件
+│   │   ├── Checkbox/            # 复选框组件
+│   │   ├── Drawer/              # 抽屉组件
+│   │   ├── Form/                # 表单组件
+│   │   ├── Input/               # 输入框组件
+│   │   ├── Layout/              # 布局组件（Container、Grid、Flex 等）
+│   │   ├── Menu/                # 菜单组件
+│   │   ├── Modal/               # 模态框组件
+│   │   ├── Pagination/          # 分页组件
+│   │   ├── Progress/            # 进度条组件
+│   │   ├── Radio/               # 单选框组件
+│   │   ├── Select/              # 选择器组件
+│   │   ├── Skeleton/            # 骨架屏组件
+│   │   ├── Slider/              # 滑块组件
+│   │   ├── Steps/               # 步骤条组件
+│   │   ├── Switch/              # 开关组件
+│   │   ├── Table/               # 表格组件
+│   │   ├── Tabs/                # 标签页组件
+│   │   ├── Tag/                 # 标签组件
+│   │   ├── Toast/               # 消息提示组件
+│   │   └── Tooltip/             # 文字提示组件
+│   ├── i18n/                     # 国际化配置
+│   ├── styles/                   # 全局样式
+│   │   ├── variables.css       # CSS 变量定义
+│   │   ├── base.css             # 基础样式重置
+│   │   └── theme.css            # 主题配置（暗色主题等）
+│   ├── App.tsx                   # 示例应用入口
+│   ├── main.tsx                 # React 渲染入口
+│   └── index.ts                 # 组件库导出入口
+├── dist/                         # 构建输出目录（构建后生成）
+├── index.html                    # 开发服务器 HTML 入口
+├── package.json                  # 项目配置
+├── tsconfig.json                 # TypeScript 配置
+├── vite.config.ts               # Vite 配置
+└── README.md                     # 项目文档
+```
+
 ## 快速开始
+
+### 作为依赖使用（发布后）
+
+如果你已经通过 npm 安装了 liyue-ui，可以这样使用：
+
+```tsx
+import { Button, Input, Select } from 'liyue-ui';
+
+// 直接使用
+<Button type="primary">主要按钮</Button>
+```
 
 ### 引入样式
 
@@ -1274,6 +1459,3 @@ document.documentElement.setAttribute('data-theme', 'compact');
 
 MIT
 =======
-# suliyueUI
-一个UI组件
->>>>>>> ea7bdc2959f72d83fe5723e64c70b25d5e3d04c6

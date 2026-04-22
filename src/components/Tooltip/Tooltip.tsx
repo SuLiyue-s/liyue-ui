@@ -147,7 +147,18 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <div className="ly-tooltip__content">{content}</div>
+            <div className="ly-tooltip__content">
+              <span style={{
+                display: 'inline',
+                writingMode: 'horizontal-tb' as const,
+                textOrientation: 'mixed' as const,
+                unicodeBidi: 'normal' as const,
+                direction: 'ltr' as const,
+                whiteSpace: 'normal' as const
+              }}>
+                {content}
+              </span>
+            </div>
           </div>
         )}
       </div>

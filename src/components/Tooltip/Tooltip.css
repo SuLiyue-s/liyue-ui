@@ -25,12 +25,13 @@
   line-height: 1.4;
 }
 
-.ly-tooltip__popper::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border: 0.25rem solid transparent;
+.ly-tooltip__content span {
+  display: inline;
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+  unicode-bidi: normal;
+  direction: ltr;
+  white-space: normal;
 }
 
 /* Placement */

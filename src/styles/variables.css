@@ -35,12 +35,12 @@
 
   /* 背景颜色 */
   --ly-bg-primary: #ffffff;
-  --ly-bg-secondary: #f9fafb;
-  --ly-bg-tertiary: #f3f4f6;
+  --ly-bg-secondary: #ffffff;
+  --ly-bg-tertiary: #f9fafb;
   --ly-bg-hover: #f3f4f6;
   --ly-bg-active: #e5e7eb;
-  --ly-bg-disabled: #e5e7eb;
-  --ly-bg-overlay: rgba(0, 0, 0, 0.5);
+  --ly-bg-disabled: #f3f4f6;
+  --ly-bg-overlay: rgba(0, 0, 0, 0.3);
 
   /* 边框颜色 */
   --ly-border-color: #e5e7eb;

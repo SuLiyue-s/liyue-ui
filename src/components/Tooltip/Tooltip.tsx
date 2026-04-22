@@ -126,7 +126,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
       return customStyle;
     }, [maxWidth, style]);
 
-    const isVertical = placement === 'left' || placement === 'right';
+    const isVertical = placement === 'left' || placement === 'right' || placement === 'top' || placement === 'bottom';
 
     const contentStyle = useMemo((): React.CSSProperties => {
       return {

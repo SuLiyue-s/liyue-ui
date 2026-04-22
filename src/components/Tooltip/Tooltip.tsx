@@ -128,6 +128,12 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
 
     const isVertical = placement === 'left' || placement === 'right';
 
+    const contentStyle = useMemo((): React.CSSProperties => {
+      return {
+        whiteSpace: isVertical ? 'nowrap' : 'normal',
+      };
+    }, [isVertical]);
+
     return (
       <div ref={ref} className={classes}>
         <div
@@ -150,7 +156,9 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
             onMouseLeave={handleMouseLeave}
           >
             <div className="ly-tooltip__content">
-              {content}
+              <span style={contentStyle}>
+                {content}
+              </span>
             </div>
           </div>
         )}

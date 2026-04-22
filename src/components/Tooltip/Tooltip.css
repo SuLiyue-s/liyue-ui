@@ -27,7 +27,9 @@
   font-size: var(--ly-font-size-xs);
   border-radius: var(--ly-radius);
   max-width: var(--ly-tooltip-max-width);
+  word-wrap: break-word;
   line-height: 1.4;
+  white-space: normal;
   word-break: break-word;
   text-align: start;
 }
@@ -142,4 +144,13 @@
   writing-mode: vertical-rl;
   text-orientation: mixed;
   white-space: nowrap;
+}
+
+.ly-tooltip__content span {
+  display: inline;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed;
+  unicode-bidi: normal;
+  direction: ltr;
+  white-space: normal;
 }

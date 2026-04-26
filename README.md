@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # LiYue UI - 高度可定制的 React UI 组件库
 
 一套功能丰富、样式高度可定制的 React UI 组件库，基于 CSS Variables 和 TypeScript 构建，支持暗色主题、紧凑模式等特性。
@@ -14,48 +13,6 @@
 - 📱 **响应式设计** - 组件支持多种尺寸和响应式布局
 - ♿ **无障碍支持** - 遵循 WAI-ARIA 标准
 
-## 常见问题
-
-### 如何自定义主题颜色？
-
-可以通过覆盖 CSS 变量来定制主题：
-
-```css
-:root {
-  --ly-primary: #1890ff;
-  --ly-primary-hover: #40a9ff;
-  --ly-primary-active: #096dd9;
-}
-```
-
-### 如何使用暗色主题？
-
-```tsx
-// 在 App 根组件上设置 data-theme 属性
-function App() {
-  return (
-    <div data-theme="dark">
-      <YourContent />
-    </div>
-  );
-}
-```
-
-### 如何贡献代码？
-
-1. Fork 本仓库
-2. 创建你的特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交你的更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 创建 Pull Request
-
-## 更新日志
-
-详见 [CHANGELOG](./CHANGELOG.md)（如果存在）
-
-## 许可证
-
-本项目基于 MIT 许可证开源 - 详见 [LICENSE](./LICENSE) 文
 ## 环境要求
 
 - **Node.js**: >= 16.0.0
@@ -63,11 +20,9 @@ function App() {
 - **React**: >= 16.8.0
 - **TypeScript**: >= 5.0.0
 
-## 安装
+## 快速开始
 
-### 作为项目依赖安装（推荐）
-
-如果你想在项目中使用 LiYue UI，可以将其作为依赖安装：
+### 方式一：使用 npm 安装（推荐用于生产环境）
 
 ```bash
 # 使用 npm 安装
@@ -80,9 +35,7 @@ yarn add liyue-ui
 pnpm add liyue-ui
 ```
 
-### 克隆并本地运行开发版本
-
-如果你想参与组件库的开发和贡献：
+### 方式二：克隆并本地运行开发版本
 
 ```bash
 # 1. 克隆仓库
@@ -101,1194 +54,423 @@ npm run dev
 # 开发服务器会在 http://localhost:5173 启动
 ```
 
-## 项目脚本
+---
 
-本项目提供了以下 npm 脚本：
+## 📖 开发环境使用指南
 
-### 开发环境
+### 开发环境概述
+
+开发环境用于**组件库的开发和调试**，让你可以在本地预览和测试所有组件。开发环境使用 Vite 开发服务器，支持热模块替换（HMR），代码修改后会自动刷新。
+
+### 启动开发服务器
 
 ```bash
-# 启动开发服务器（热重载）
+# 启动开发服务器
 npm run dev
-
-# 预览生产构建（预览构建后的效果）
-npm run preview
 ```
 
-### 构建
+启动后，你会在终端看到类似以下输出：
+
+```
+  VITE v5.x.x  ready in xxx ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: http://192.168.x.x:5173/
+  ➜  press h + enter to show help
+```
+
+### 开发服务器特点
+
+- **热模块替换（HMR）**：修改代码后无需完全刷新页面即可看到变化
+- **快速启动**：Vite 使用原生 ESM，无需打包即可启动
+- **实时预览**：所有组件示例实时可见
+- **调试友好**：支持 Source Maps，便于调试
+
+### 访问组件示例
+
+开发服务器启动后，打开浏览器访问 `http://localhost:5173/`，你会看到一个展示所有组件的示例页面。
+
+示例页面包含以下内容：
+
+- **国际化切换**：可以在中英文之间切换
+- **所有组件示例**：展示每个组件的多种用法
+- **交互测试**：可以测试组件的各种交互效果
+
+### 修改和调试组件
+
+1. **查看组件源码**：所有组件源码位于 `src/components/` 目录下
+2. **修改组件**：编辑对应的组件文件，保存后会自动更新
+3. **查看效果**：在浏览器中立即看到修改效果
+4. **添加新组件**：在 `src/components/` 下创建新组件目录
+
+### 组件开发工作流程
+
+#### 1. 创建新组件
+
+```
+src/components/
+  └── MyComponent/
+      ├── MyComponent.tsx      # 组件实现
+      ├── MyComponent.css      # 组件样式
+      └── index.ts              # 导出文件
+```
+
+#### 2. 实现组件
+
+```tsx
+// src/components/MyComponent/MyComponent.tsx
+import React from 'react';
+import './MyComponent.css';
+
+export interface MyComponentProps {
+  text?: string;
+  onClick?: () => void;
+}
+
+export const MyComponent: React.FC<MyComponentProps> = ({ 
+  text = '默认文本',
+  onClick 
+}) => {
+  return (
+    <div className="ly-my-component" onClick={onClick}>
+      {text}
+    </div>
+  );
+};
+```
+
+#### 3. 导出组件
+
+```typescript
+// src/components/MyComponent/index.ts
+export { MyComponent } from './MyComponent';
+export type { MyComponentProps } from './MyComponent';
+```
+
+#### 4. 在组件库入口导出
+
+```typescript
+// src/components/index.ts
+// ... 其他组件导出
+export { MyComponent } from './MyComponent';
+```
+
+#### 5. 在示例页面测试
+
+```tsx
+// src/App.tsx
+import { MyComponent } from './components';
+
+// 在示例中添加
+<MyComponent text="测试文本" onClick={() => console.log('clicked')} />
+```
+
+### 开发工具和脚本
+
+#### 类型检查
 
 ```bash
-# 构建库版本（用于发布到 npm）
-npm run build
-
-# 执行类型检查
+# 执行 TypeScript 类型检查
 npm run typecheck
+```
 
-# 测试环境配置
+这将运行 TypeScript 编译器检查所有 `.ts` 和 `.tsx` 文件的类型错误。
+
+#### 环境配置测试
+
+```bash
+# 测试 Node.js 环境配置
 npm run test:env
 ```
 
-### 构建说明
+验证项目是否正确配置，包括 Node.js 版本、npm 可用性等。
 
-**开发环境构建 (`npm run dev`)：**
-- 使用 Vite 的开发服务器
-- 支持热模块替换（HMR）
-- 代码修改后自动刷新
-- 适合开发和调试组件
+### 开发最佳实践
 
-**生产环境构建 (`npm run build`)：**
-- 优化代码，移除开发注释和调试代码
-- 压缩 JavaScript 和 CSS
-- 生成 TypeScript 类型定义文件
-- 输出目录：`dist/`
-  - `dist/index.js` - CommonJS 版本
-  - `dist/index.esm.js` - ES Modules 版本
-  - `dist/index.d.ts` - TypeScript 类型定义
-  - `dist/styles/` - CSS 样式文件
+1. **保持组件独立**：每个组件应该独立工作，不依赖其他组件的内部实现
+2. **使用 CSS Variables**：在 `src/styles/variables.css` 中定义变量，保持样式一致性
+3. **编写类型定义**：为所有 props 提供完整的 TypeScript 类型
+4. **支持主题定制**：使用 CSS Variables，让用户能够通过覆盖变量来自定义样式
+5. **遵循现有模式**：参考现有组件的代码结构和命名规范
 
-**预览构建 (`npm run preview`)：**
-- 在本地服务器上预览生产构建
-- 用于测试构建后的组件库是否正常工作
+---
 
-## 目录结构
+## 📦 生产环境使用指南
 
-```
-liyue-ui/
-├── src/                          # 源代码目录
-│   ├── components/               # 组件目录
-│   │   ├── Alert/               # 警告提示组件
-│   │   ├── Avatar/              # 头像组件
-│   │   ├── Badge/               # 徽章组件
-│   │   ├── Breadcrumb/          # 面包屑导航
-│   │   ├── Button/              # 按钮组件
-│   │   ├── Card/                # 卡片组件
-│   │   ├── Checkbox/            # 复选框组件
-│   │   ├── Drawer/              # 抽屉组件
-│   │   ├── Form/                # 表单组件
-│   │   ├── Input/               # 输入框组件
-│   │   ├── Layout/              # 布局组件（Container、Grid、Flex 等）
-│   │   ├── Menu/                # 菜单组件
-│   │   ├── Modal/               # 模态框组件
-│   │   ├── Pagination/          # 分页组件
-│   │   ├── Progress/            # 进度条组件
-│   │   ├── Radio/               # 单选框组件
-│   │   ├── Select/              # 选择器组件
-│   │   ├── Skeleton/            # 骨架屏组件
-│   │   ├── Slider/              # 滑块组件
-│   │   ├── Steps/               # 步骤条组件
-│   │   ├── Switch/              # 开关组件
-│   │   ├── Table/               # 表格组件
-│   │   ├── Tabs/                # 标签页组件
-│   │   ├── Tag/                 # 标签组件
-│   │   ├── Toast/               # 消息提示组件
-│   │   └── Tooltip/             # 文字提示组件
-│   ├── i18n/                     # 国际化配置
-│   ├── styles/                   # 全局样式
-│   │   ├── variables.css       # CSS 变量定义
-│   │   ├── base.css             # 基础样式重置
-│   │   └── theme.css            # 主题配置（暗色主题等）
-│   ├── App.tsx                   # 示例应用入口
-│   ├── main.tsx                 # React 渲染入口
-│   └── index.ts                 # 组件库导出入口
-├── dist/                         # 构建输出目录（构建后生成）
-├── index.html                    # 开发服务器 HTML 入口
-├── package.json                  # 项目配置
-├── tsconfig.json                 # TypeScript 配置
-├── vite.config.ts               # Vite 配置
-└── README.md                     # 项目文档
+### 构建生产版本
+
+当你完成组件开发后，需要构建生产版本供其他项目使用：
+
+```bash
+# 构建库版本
+npm run build
 ```
 
-## 快速开始
+构建过程会生成优化的、可用于生产的文件。
 
-### 作为依赖使用（发布后）
+### 构建输出说明
 
-如果你已经通过 npm 安装了 liyue-ui，可以这样使用：
+构建完成后，会在 `dist/` 目录下生成以下文件：
+
+```
+dist/
+├── liyue-ui.es.js          # ES Module 版本（96 KB）
+├── liyue-ui.umd.js         # UMD 版本（63 KB）
+├── style.css               # 所有组件样式（54 KB）
+├── index.d.ts              # TypeScript 类型定义
+└── components/             # 组件类型定义目录
+    ├── Button/
+    ├── Input/
+    └── ... (其他组件类型)
+```
+
+### 多种使用方式
+
+#### 方式 1：作为 npm 依赖使用（推荐）
+
+##### 在 React 项目中安装使用
+
+```bash
+# 在你的 React 项目中安装
+npm install liyue-ui
+```
+
+##### 引入样式文件
+
+在项目的入口文件（通常是 `main.tsx` 或 `App.tsx`）中引入样式：
 
 ```tsx
-import { Button, Input, Select } from 'liyue-ui';
+// main.tsx 或 App.tsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import 'liyue-ui/dist/style.css';  // 引入所有样式
+import App from './App';
 
-// 直接使用
-<Button type="primary">主要按钮</Button>
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 ```
 
-### 引入样式
-
-在入口文件（通常是 `main.tsx` 或 `App.tsx`）中引入样式：
+或者按需引入样式：
 
 ```tsx
-import 'liyue-ui/dist/styles/variables.css';
-import 'liyue-ui/dist/styles/base.css';
-import 'liyue-ui/dist/styles/theme.css';
+// 只引入你需要的组件样式
+import 'liyue-ui/dist/style.css';  // 完整样式文件
 ```
 
-或者在 CSS 中导入：
-
-```css
-@import 'liyue-ui/dist/styles/variables.css';
-@import 'liyue-ui/dist/styles/base.css';
-@import 'liyue-ui/dist/styles/theme.css';
-```
-
-### 使用组件
+##### 使用组件
 
 ```tsx
-import { Button, Input, Select } from 'liyue-ui';
+// App.tsx
+import { Button, Input, Select, Card } from 'liyue-ui';
 
 function App() {
   return (
-    <div>
-      <Button type="primary">主要按钮</Button>
-      <Input placeholder="请输入" />
-      <Select
+    <Card title="表单示例">
+      <Input placeholder="请输入用户名" />
+      <Select 
+        placeholder="请选择角色"
         options={[
-          { label: '选项1', value: 1 },
-          { label: '选项2', value: 2 },
+          { label: '管理员', value: 'admin' },
+          { label: '用户', value: 'user' },
         ]}
       />
-    </div>
+      <Button type="primary">提交</Button>
+    </Card>
   );
 }
+
+export default App;
 ```
 
-### 国际化 i18n
+#### 方式 2：CDN 引入（用于快速原型或不使用构建工具的场景）
 
-组件库内置了完整的国际化支持，支持简体中文和英文切换：
+##### 使用 CDN 链接
 
-```tsx
-import { I18nProvider, useI18n } from 'liyue-ui';
-
-function App() {
-  return (
-    <I18nProvider locale="zh-CN">
-      <YourApp />
-    </I18nProvider>
-  );
-}
-
-// 在组件中使用
-function MyComponent() {
-  const { locale, setLocale, t } = useI18n();
-
-  return (
-    <div>
-      <p>当前语言: {locale === 'zh-CN' ? '简体中文' : 'English'}</p>
-      <button onClick={() => setLocale('en-US')}>切换到英文</button>
-      <button onClick={() => setLocale('zh-CN')}>切换到中文</button>
-    </div>
-  );
-}
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用 LiYue UI</title>
+  
+  <!-- 引入 React -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  
+  <!-- 引入 LiYue UI 样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/liyue-ui/dist/style.css">
+  
+  <!-- 引入 LiYue UI -->
+  <script crossorigin src="https://unpkg.com/liyue-ui/dist/liyue-ui.umd.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  
+  <script>
+    const { Button, Input } = window.LiyueUI;
+    
+    const App = () => {
+      return React.createElement('div', null, 
+        React.createElement(Input, { placeholder: '请输入' }),
+        React.createElement(Button, { type: 'primary' }, '提交')
+      );
+    };
+    
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      React.createElement(App)
+    );
+  </script>
+</body>
+</html>
 ```
 
-**支持的语言：**
-- `zh-CN` - 简体中文（默认）
-- `en-US` - English
+##### 使用 unpkg CDN
 
-**I18nProvider API:**
+```html
+<!-- 最新版本 -->
+<script src="https://unpkg.com/liyue-ui/dist/liyue-ui.umd.js"></script>
 
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| locale | 当前语言 | `zh-CN \| en-US` | `zh-CN` |
-| defaultLocale | 默认语言 | `zh-CN \| en-US` | `zh-CN` |
-| messages | 自定义语言包 | `LocaleMessages` | 内置语言包 |
+<!-- 指定版本 -->
+<script src="https://unpkg.com/liyue-ui@1.0.0/dist/liyue-ui.umd.js"></script>
+```
 
-**useI18n 返回值：**
+##### 使用 jsDelivr CDN
 
-| 参数 | 说明 | 类型 |
-|------|------|------|
-| locale | 当前语言 | `zh-CN \| en-US` |
-| messages | 当前语言包 | `LocaleMessages` |
-| setLocale | 切换语言 | `(locale: Locale) => void` |
-| t | 翻译函数 | `(key: string, params?) => string` |
+```html
+<!-- 最新版本 -->
+<script src="https://cdn.jsdelivr.net/npm/liyue-ui/dist/liyue-ui.umd.js"></script>
 
-## 基础组件
+<!-- 指定版本 -->
+<script src="https://cdn.jsdelivr.net/npm/liyue-ui@1.0.0/dist/liyue-ui.umd.js"></script>
+```
 
-### Button 按钮
+#### 方式 3：本地文件引入
 
-```tsx
+将 `dist/` 目录下的文件复制到你的项目中：
+
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>本地使用 LiYue UI</title>
+  
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="./libs/liyue-ui/style.css">
+  
+  <!-- 引入组件库 -->
+  <script src="./libs/liyue-ui/liyue-ui.umd.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  
+  <script>
+    const { Button, Input } = window.LiyueUI;
+    // 使用组件...
+  </script>
+</body>
+</html>
+```
+
+### 模块格式说明
+
+#### ES Module（ESM）
+
+适合现代打包工具（如 Vite、Webpack 5）：
+
+```typescript
+// ESM 导入
 import { Button } from 'liyue-ui';
 
-// 基本用法
-<Button>默认按钮</Button>
-<Button type="primary">主要按钮</Button>
-<Button type="success">成功按钮</Button>
-<Button type="warning">警告按钮</Button>
-<Button type="danger">危险按钮</Button>
-<Button type="info">信息按钮</Button>
-
-// 不同尺寸
-<Button size="sm">小按钮</Button>
-<Button size="md">中等按钮</Button>
-<Button size="lg">大按钮</Button>
-
-// 状态
-<Button plain>朴素按钮</Button>
-<Button round>圆角按钮</Button>
-<Button circle icon={<Icon />}>圆形按钮</Button>
-<Button loading>加载中</Button>
-<Button disabled>禁用</Button>
-
-// 带图标
-<Button icon={<IconPlus />}>添加</Button>
-<Button type="primary" icon={<IconSearch />}>搜索</Button>
+// 支持 tree shaking，只导入使用的组件
+import { Button, Input } from 'liyue-ui';
 ```
 
-**API:**
+**优点**：
+- 支持 tree shaking，减少打包体积
+- 更好的代码分割
+- 符合现代 JavaScript 标准
 
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| type | 按钮类型 | `primary \| secondary \| success \| warning \| danger \| info \| link \| text` | `primary` |
-| size | 按钮大小 | `sm \| md \| lg` | `md` |
-| plain | 是否朴素按钮 | `boolean` | `false` |
-| round | 是否圆角按钮 | `boolean` | `false` |
-| circle | 是否圆形按钮 | `boolean` | `false` |
-| loading | 是否加载状态 | `boolean` | `false` |
-| disabled | 是否禁用 | `boolean` | `false` |
-| icon | 按钮图标 | `ReactNode` | - |
-| loadingIcon | 加载图标 | `ReactNode` | - |
-| width | 按钮宽度 | `string \| number` | - |
+**适用场景**：
+- 使用 Vite、Webpack 5 等现代打包工具的项目
+- React 项目（使用 Create React App、Vite、Next.js 等）
 
-### Input 输入框
+#### UMD
 
-```tsx
-import { Input } from 'liyue-ui';
+适合传统打包工具或直接浏览器使用：
 
-// 基本用法
-<Input placeholder="请输入" />
-
-// 不同尺寸
-<Input size="sm" placeholder="小型" />
-<Input size="md" placeholder="中等" />
-<Input size="lg" placeholder="大型" />
-
-// 前缀和后缀
-<Input prefix={<IconUser />} placeholder="用户名" />
-<Input suffix={<IconSearch />} placeholder="搜索" />
-
-// 前置和后置标签
-<Input prepend="https://" placeholder="网站" />
-<Input append=".com" placeholder="域名" />
-
-// 可清除
-<Input clearable defaultValue="可清除的内容" />
-
-// 密码框
-<Input type="password" showPasswordToggle placeholder="密码" />
-
-// 禁用
-<Input disabled defaultValue="禁用" />
+```html
+<!-- 浏览器全局变量方式 -->
+<script src="liyue-ui.umd.js"></script>
+<script>
+  const Button = window.LiyueUI.Button;
+</script>
 ```
 
-**API:**
+**优点**：
+- 兼容旧版浏览器
+- 无需构建工具即可使用
+- 支持 AMD 模块加载器
 
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| size | 输入框大小 | `sm \| md \| lg` | `md` |
-| type | 输入框类型 | `string` | `text` |
-| prefix | 前缀图标 | `ReactNode` | - |
-| suffix | 后缀图标 | `ReactNode` | - |
-| prepend | 前置标签 | `ReactNode` | - |
-| append | 后置标签 | `ReactNode` | - |
-| clearable | 是否可清除 | `boolean` | `false` |
-| showPasswordToggle | 是否显示密码切换 | `boolean` | `false` |
-| bordered | 是否有边框 | `boolean` | `true` |
-| width | 输入框宽度 | `string \| number` | - |
+**适用场景**：
+- 不使用构建工具的简单页面
+- 需要兼容旧版浏览器的项目
+- 需要通过 CDN 引入的项目
 
-### Select 选择器
+### Tree Shaking 支持
 
-```tsx
-import { Select } from 'liyue-ui';
+组件库支持 tree shaking，可以显著减少打包体积：
 
-// 基本用法
-<Select
-  options={[
-    { label: '选项1', value: 1 },
-    { label: '选项2', value: 2 },
-    { label: '禁用选项', value: 3, disabled: true },
-  ]}
-  placeholder="请选择"
-/>
+```typescript
+// ✅ 正确：只导入使用的组件
+import { Button, Input } from 'liyue-ui';
 
-// 多选
-<Select multiple placeholder="多选" options={options} />
-
-// 可搜索
-<Select searchable placeholder="搜索选择" options={options} />
-
-// 可清除
-<Select clearable placeholder="可清除" options={options} />
+// ❌ 错误：导入整个库（不支持 tree shaking）
+import LIYUE from 'liyue-ui';
 ```
 
-**API:**
+**如何验证 tree shaking 生效**：
 
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| options | 选项列表 | `SelectOption[]` | `[]` |
-| value | 当前值（受控） | `string \| number \| (string \| number)[]` | - |
-| defaultValue | 默认值 | `string \| number \| (string \| number)[]` | - |
-| placeholder | 占位符 | `string` | `请选择` |
-| multiple | 是否多选 | `boolean` | `false` |
-| searchable | 是否可搜索 | `boolean` | `false` |
-| clearable | 是否可清除 | `boolean` | `false` |
-| disabled | 是否禁用 | `boolean` | `false` |
-| size | 选择器大小 | `sm \| md \| lg` | `md` |
-| maxTagCount | 最大显示标签数 | `number` | - |
-| width | 宽度 | `string \| number` | - |
+1. 使用 Webpack：在生产构建时打开 bundle 分析器，检查是否只打包了使用的组件
+2. 使用 Vite：在 `vite.config.ts` 中配置 `build.rollupOptions.output.manualChunks` 分析
 
-### Checkbox 复选框
+### TypeScript 支持
 
-```tsx
-import { Checkbox, CheckboxGroup } from 'liyue-ui';
+组件库提供完整的 TypeScript 类型定义，无需额外安装类型包：
 
-// 基本用法
-<Checkbox>选项</Checkbox>
-<Checkbox checked>选中</Checkbox>
-<Checkbox disabled>禁用</Checkbox>
+```typescript
+import { Button, ButtonProps } from 'liyue-ui';
 
-// 组
-<CheckboxGroup
-  options={[
-    { label: '选项1', value: 1 },
-    { label: '选项2', value: 2 },
-    { label: '禁用', value: 3, disabled: true },
-  ]}
-  defaultValue={[1, 2]}
-/>
-
-// 不确定状态
-<Checkbox indeterminate>不确定状态</Checkbox>
+// 完整类型提示
+const MyButton: React.FC<ButtonProps> = (props) => {
+  return <Button {...props} />;
+};
 ```
 
-**CheckboxGroup API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| options | 选项列表 | `Array<{label, value, disabled?}>` | `[]` |
-| value | 当前值（受控） | `(string \| number)[]` | - |
-| defaultValue | 默认值 | `(string \| number)[]` | `[]` |
-| direction | 排列方向 | `horizontal \| vertical` | `horizontal` |
-| disabled | 是否全部禁用 | `boolean` | `false` |
-
-### Radio 单选框
-
-```tsx
-import { Radio, RadioGroup } from 'liyue-ui';
-
-// 基本用法
-<Radio>选项</Radio>
-<Radio checked>选中</Radio>
-
-// 组
-<RadioGroup
-  options={[
-    { label: '选项1', value: 1 },
-    { label: '选项2', value: 2 },
-    { label: '禁用', value: 3, disabled: true },
-  ]}
-  defaultValue={1}
-/>
-```
-
-**RadioGroup API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| options | 选项列表 | `Array<{label, value, disabled?}>` | `[]` |
-| value | 当前值（受控） | `string \| number` | - |
-| defaultValue | 默认值 | `string \| number` | - |
-| direction | 排列方向 | `horizontal \| vertical` | `horizontal` |
-| disabled | 是否全部禁用 | `boolean` | `false` |
-
-### Switch 开关
-
-```tsx
-import { Switch } from 'liyue-ui';
-
-<Switch />
-<Switch checked />
-<Switch disabled />
-<Switch size="sm" />
-<Switch size="lg" />
-<Switch
-  checkedText="ON"
-  uncheckedText="OFF"
-  showText
-/>
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| checked | 是否选中（受控） | `boolean` | - |
-| disabled | 是否禁用 | `boolean` | `false` |
-| size | 大小 | `sm \| md \| lg` | `md` |
-| activeText | 选中时文本 | `ReactNode` | - |
-| inactiveText | 未选中时文本 | `ReactNode` | - |
-| showIcon | 是否显示图标 | `boolean` | `false` |
-
-### Slider 滑块
-
-```tsx
-import { Slider } from 'liyue-ui';
-
-<Slider />
-<Slider defaultValue={50} />
-<Slider min={0} max={100} step={10} />
-<Slider range defaultValue={[20, 80]} />
-<Slider showInput />
-<Slider showTooltip />
-<Slider size="sm" />
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| value | 当前值（受控） | `number` | - |
-| defaultValue | 默认值 | `number` | `0` |
-| min | 最小值 | `number` | `0` |
-| max | 最大值 | `number` | `100` |
-| step | 步长 | `number` | `1` |
-| range | 是否范围选择 | `boolean` | `false` |
-| showInput | 是否显示输入框 | `boolean` | `false` |
-| showTooltip | 是否显示提示 | `boolean` | `true` |
-| disabled | 是否禁用 | `boolean` | `false` |
-| size | 大小 | `sm \| md \| lg` | `md` |
-
-## 布局组件
-
-### Container 容器
-
-```tsx
-import { Container } from 'liyue-ui';
-
-<Container maxWidth="lg" centered>
-  内容
-</Container>
-
-<Container maxWidth={800} padding={20}>
-  自定义
-</Container>
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| maxWidth | 最大宽度 | `sm \| md \| lg \| xl \| 2xl \| full \| string \| number` | `lg` |
-| centered | 是否居中 | `boolean` | `false` |
-| padding | 内边距 | `string \| number` | - |
-
-### Grid 网格
-
-```tsx
-import { Grid, GridItem } from 'liyue-ui';
-
-<Grid cols={12} gap={20}>
-  <GridItem span={8}>8列</GridItem>
-  <GridItem span={4}>4列</GridItem>
-</Grid>
-
-<Grid cols={4}>
-  <GridItem>1</GridItem>
-  <GridItem span={2}>2</GridItem>
-  <GridItem>1</GridItem>
-</Grid>
-
-<Grid cols={{ sm: 2, md: 4, lg: 6 }}>
-  <GridItem sm={1} md={2} lg={3}>响应式</GridItem>
-</Grid>
-```
-
-**Grid API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| cols | 列数 | `number \| { sm, md, lg, xl }` | `12` |
-| gap | 间距 | `string \| number` | - |
-| rowGap | 行间距 | `string \| number` | - |
-| colGap | 列间距 | `string \| number` | - |
-
-**GridItem API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| span | 列数占比 | `number` | `1` |
-| offset | 偏移列数 | `number` | `0` |
-| start | 起始列 | `number` | - |
-| sm/md/lg/xl | 响应式列数 | `number` | - |
-
-### Flex 弹性盒
-
-```tsx
-import { Flex } from 'liyue-ui';
-
-<Flex gap={10}>
-  <div>1</div>
-  <div>2</div>
-  <div>3</div>
-</Flex>
-
-<Flex justify="center" align="center" style={{ height: 200 }}>
-  居中
-</Flex>
-
-<Flex direction="column" gap={20}>
-  垂直
-</Flex>
-
-<Flex wrap>
-  自动换行
-</Flex>
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| direction | 排列方向 | `row \| column \| row-reverse \| column-reverse` | `row` |
-| wrap | 是否换行 | `boolean \| wrap \| nowrap \| wrap-reverse` | `false` |
-| justify | 主轴对齐 | `start \| end \| center \| between \| around \| evenly` | `start` |
-| align | 交叉轴对齐 | `start \| end \| center \| stretch \| baseline` | `stretch` |
-| gap | 间距 | `string \| number` | - |
-
-### Divider 分割线
-
-```tsx
-import { Divider } from 'liyue-ui';
-
-<Divider />
-
-<Divider>带文字</Divider>
-
-<Divider direction="vertical" />
-
-<Divider lineStyle="dashed" />
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| direction | 方向 | `horizontal \| vertical` | `horizontal` |
-| thickness | 粗细 | `string \| number` | `1` |
-| color | 颜色 | `string` | - |
-| lineStyle | 样式 | `solid \| dashed \| dotted` | `solid` |
-| children | 文字内容 | `ReactNode` | - |
-
-## 数据展示组件
-
-### Table 表格
-
-```tsx
-import { Table } from 'liyue-ui';
-
-const columns = [
-  { title: '姓名', dataIndex: 'name' },
-  { title: '年龄', dataIndex: 'age' },
-  { title: '地址', dataIndex: 'address' },
-  {
-    title: '操作',
-    render: (_, record) => <Button size="sm">编辑</Button>,
-  },
-];
-
-const data = [
-  { key: 1, name: '张三', age: 18, address: '北京' },
-  { key: 2, name: '李四', age: 20, address: '上海' },
-];
-
-<Table columns={columns} dataSource={data} bordered striped />
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| columns | 列配置 | `TableColumn[]` | `[]` |
-| dataSource | 数据源 | `T[]` | `[]` |
-| bordered | 是否带边框 | `boolean` | `false` |
-| striped | 是否带斑马纹 | `boolean` | `false` |
-| hoverable | 是否有hover效果 | `boolean` | `true` |
-| size | 表格大小 | `sm \| md \| lg` | `md` |
-| showHeader | 是否显示表头 | `boolean` | `true` |
-| loading | 是否加载中 | `boolean` | `false` |
-| rowSelection | 行选择配置 | `{ selectedRowKeys, onChange, getCheckboxProps }` | - |
-
-### Card 卡片
-
-```tsx
-import { Card } from 'liyue-ui';
-
-<Card title="卡片标题">
-  卡片内容
-</Card>
-
-<Card
-  title="带副标题"
-  subTitle="副标题"
-  avatar={<Avatar>张</Avatar>}
->
-  卡片内容
-</Card>
-
-<Card
-  cover={<img src="/cover.jpg" alt="封面" />}
->
-  卡片内容
-</Card>
-
-<Card
-  actions={[
-    <IconEdit />,
-    <IconShare />,
-    <IconDelete />,
-  ]}
->
-  卡片内容
-</Card>
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| title | 标题 | `ReactNode` | - |
-| subTitle | 副标题 | `ReactNode` | - |
-| cover | 封面图片 | `ReactNode` | - |
-| avatar | 头像 | `ReactNode` | - |
-| actions | 操作按钮 | `ReactNode[]` | - |
-| bordered | 是否有边框 | `boolean` | `true` |
-| shadow | 阴影 | `boolean \| hover \| always` | `false` |
-| clickable | 是否可点击 | `boolean` | `false` |
-| size | 大小 | `sm \| md \| lg` | `md` |
-
-### Avatar 头像
-
-```tsx
-import { Avatar } from 'liyue-ui';
-
-<Avatar>张</Avatar>
-<Avatar src="/avatar.jpg" />
-<Avatar size={60} shape="square">大</Avatar>
-<Avatar size="xl" icon={<IconUser />} />
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| src | 图片地址 | `string` | - |
-| size | 大小 | `sm \| md \| lg \| xl \| string \| number` | `md` |
-| shape | 形状 | `circle \| square \| rounded` | `circle` |
-| text | 显示文字 | `string` | - |
-| icon | 图标 | `ReactNode` | - |
-| bgColor | 背景颜色 | `string` | - |
-
-### Badge 徽标
-
-```tsx
-import { Badge } from 'liyue-ui';
-
-<Badge count={5}>
-  <Icon />
-</Badge>
-
-<Badge count={100} maxCount={99} />
-<Badge dot />
-<Badge status="success" />
-<Badge color="#f00">红色</Badge>
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| count | 数量 | `number \| ReactNode` | - |
-| maxCount | 最大数字 | `number` | `99` |
-| dot | 是否显示原点 | `boolean` | `false` |
-| status | 状态类型 | `success \| warning \| danger \| info \| default` | - |
-| color | 自定义颜色 | `string` | - |
-| show | 是否显示 | `boolean` | `true` |
-| offset | 偏移量 | `[number, number]` | - |
-
-### Tag 标签
-
-```tsx
-import { Tag } from 'liyue-ui';
-
-<Tag>默认</Tag>
-<Tag type="success">成功</Tag>
-<Tag type="warning">警告</Tag>
-<Tag type="danger">危险</Tag>
-<Tag closable>可关闭</Tag>
-<Tag checkable defaultChecked>可选中</Tag>
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| type | 类型 | `primary \| success \| warning \| danger \| info \| default` | `default` |
-| size | 大小 | `sm \| md \| lg` | `md` |
-| closable | 是否可关闭 | `boolean` | `false` |
-| checkable | 是否可选中 | `boolean` | `false` |
-| checked | 是否选中（受控） | `boolean` | - |
-| bordered | 是否有边框 | `boolean` | `true` |
-| round | 是否圆角 | `boolean` | `false` |
-| color | 自定义颜色 | `string` | - |
-
-### Progress 进度条
-
-```tsx
-import { Progress } from 'liyue-ui';
-
-<Progress percent={50} />
-<Progress percent={80} status="success" />
-<Progress percent={30} type="circle" />
-<Progress type="dashboard" percent={75} />
-<Progress animated />
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| percent | 进度值 | `number` | `0` |
-| type | 类型 | `line \| circle \| dashboard` | `line` |
-| strokeWidth | 线条宽度 | `number` | - |
-| strokeColor | 线条颜色 | `string` | - |
-| trailColor | 轨道颜色 | `string` | - |
-| showText | 是否显示文字 | `boolean` | `true` |
-| format | 格式化函数 | `(percent) => ReactNode` | - |
-| status | 状态 | `success \| exception \| normal` | - |
-| animated | 是否动画 | `boolean` | `false` |
-| size | 大小 | `sm \| md \| lg` | `md` |
-
-### Skeleton 骨架屏
-
-```tsx
-import { Skeleton, SkeletonParagraph, SkeletonAvatar } from 'liyue-ui';
-
-<Skeleton />
-<Skeleton width={200} height={20} />
-<SkeletonAvatar size="lg" />
-<SkeletonParagraph rows={4} />
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| animated | 是否动画 | `boolean` | `true` |
-| width | 宽度 | `string \| number` | `100%` |
-| height | 高度 | `string \| number` | - |
-| circle | 是否圆形 | `boolean` | `false` |
-
-## 导航组件
-
-### Menu 菜单
-
-```tsx
-import { Menu } from 'liyue-ui';
-
-const items = [
-  { key: 'home', label: '首页', icon: <IconHome /> },
-  { key: 'about', label: '关于', icon: <IconInfo /> },
-  {
-    key: 'sub',
-    label: '子菜单',
-    children: [
-      { key: 'sub1', label: '子菜单1' },
-      { key: 'sub2', label: '子菜单2' },
-    ],
-  },
-];
-
-<Menu items={items} defaultSelectedKey="home" />
-<Menu items={items} mode="horizontal" />
-<Menu items={items} mode="inline" defaultOpenKeys={['sub']} />
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| items | 菜单数据 | `MenuItem[]` | `[]` |
-| selectedKey | 选中项（受控） | `string` | - |
-| defaultSelectedKey | 默认选中项 | `string` | - |
-| openKeys | 展开的子菜单（受控） | `string[]` | - |
-| defaultOpenKeys | 默认展开的子菜单 | `string[]` | `[]` |
-| mode | 模式 | `horizontal \| vertical \| inline` | `vertical` |
-| theme | 主题 | `light \| dark` | `light` |
-| inlineIndent | 缩进宽度 | `number` | `1.5` |
-
-### Tabs 标签页
-
-```tsx
-import { Tabs } from 'liyue-ui';
-
-const items = [
-  { key: 'tab1', label: '标签1', children: '内容1' },
-  { key: 'tab2', label: '标签2', children: '内容2' },
-  { key: 'tab3', label: '禁用', children: '内容3', disabled: true },
-];
-
-<Tabs items={items} />
-<Tabs items={items} type="card" />
-<Tabs items={items} tabPosition="left" />
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| items | 标签数据 | `TabItem[]` | `[]` |
-| activeKey | 当前标签（受控） | `string` | - |
-| defaultActiveKey | 默认标签 | `string` | - |
-| tabPosition | 位置 | `top \| bottom \| left \| right` | `top` |
-| type | 类型 | `line \| card \| segment` | `line` |
-| size | 大小 | `sm \| md \| lg` | `md` |
-
-### Breadcrumb 面包屑
-
-```tsx
-import { Breadcrumb } from 'liyue-ui';
-
-const items = [
-  { title: '首页', href: '/' },
-  { title: '列表', href: '/list' },
-  { title: '详情' },
-];
-
-<Breadcrumb items={items} />
-<Breadcrumb items={items} separator=">" />
-<Breadcrumb items={items} showIcon />
-<Breadcrumb items={items} maxCount={3} />
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| items | 面包屑数据 | `BreadcrumbItem[]` | `[]` |
-| separator | 分隔符 | `ReactNode` | `/` |
-| showIcon | 是否显示图标 | `boolean` | `false` |
-| maxCount | 最大显示数量 | `number` | - |
-
-### Pagination 分页
-
-```tsx
-import { Pagination } from 'liyue-ui';
-
-<Pagination total={100} />
-<Pagination total={1000} showSizeChanger showQuickJumper />
-<Pagination total={100} simple />
-<Pagination total={100} showTotal={(total) => `共 ${total} 条`} />
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| total | 总数 | `number` | `0` |
-| current | 当前页码（受控） | `number` | - |
-| defaultCurrent | 默认页码 | `number` | `1` |
-| pageSize | 每页条数 | `number` | `10` |
-| showTotal | 是否显示总数 | `boolean \| ((total, range) => ReactNode)` | `false` |
-| showSizeChanger | 是否显示每页条数 | `boolean` | `false` |
-| showQuickJumper | 是否快速跳转 | `boolean` | `false` |
-| pageSizeOptions | 每页条数选项 | `number[]` | `[10, 20, 50, 100]` |
-| simple | 简化模式 | `boolean` | `false` |
-| disabled | 是否禁用 | `boolean` | `false` |
-| size | 大小 | `sm \| md \| lg` | `md` |
-
-### Steps 步骤条
-
-```tsx
-import { Steps } from 'liyue-ui';
-
-const items = [
-  { title: '步骤1', description: '描述' },
-  { title: '步骤2', description: '描述' },
-  { title: '步骤3', description: '描述' },
-];
-
-<Steps items={items} current={1} />
-<Steps items={items} direction="vertical" />
-<Steps items={items} size="sm" />
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| items | 步骤数据 | `StepItem[]` | `[]` |
-| current | 当前步骤（受控） | `number` | - |
-| defaultCurrent | 默认步骤 | `number` | `0` |
-| direction | 方向 | `horizontal \| vertical` | `horizontal` |
-| status | 状态 | `wait \| process \| finish \| error` | - |
-| showIcon | 是否显示图标 | `boolean` | `true` |
-| simple | 简化显示 | `boolean` | `false` |
-| size | 大小 | `sm \| md` | `md` |
-
-## 反馈组件
-
-### Modal 对话框
-
-```tsx
-import { Modal, Button } from 'liyue-ui';
-import { useState } from 'react';
-
-function Example() {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <Button onClick={() => setOpen(true)}>打开</Button>
-      <Modal
-        open={open}
-        title="标题"
-        onClose={() => setOpen(false)}
-        footer={
-          <>
-            <Button onClick={() => setOpen(false)}>取消</Button>
-            <Button type="primary" onClick={() => setOpen(false)}>确定</Button>
-          </>
-        }
-      >
-        内容
-      </Modal>
-    </>
-  );
+**在 `tsconfig.json` 中配置路径别名**（可选）：
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  }
 }
 ```
 
-**API:**
+---
 
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| open | 是否显示（受控） | `boolean` | `false` |
-| title | 标题 | `ReactNode` | - |
-| children | 内容 | `ReactNode` | - |
-| footer | 底部内容 | `ReactNode` | - |
-| width | 宽度 | `string \| number` | `md` |
-| closable | 是否显示关闭按钮 | `boolean` | `true` |
-| mask | 是否显示遮罩 | `boolean` | `true` |
-| maskClosable | 点击遮罩是否关闭 | `boolean` | `true` |
-| centered | 是否居中 | `boolean` | `false` |
-| animated | 是否动画 | `boolean` | `true` |
-| size | 预设尺寸 | `sm \| md \| lg \| xl \| full` | `md` |
+## 🎨 主题定制
 
-### Drawer 抽屉
+### 自定义主题颜色
 
-```tsx
-import { Drawer, Button } from 'liyue-ui';
-import { useState } from 'react';
-
-function Example() {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <>
-      <Button onClick={() => setOpen(true)}>打开</Button>
-      <Drawer
-        open={open}
-        title="标题"
-        placement="right"
-        onClose={() => setOpen(false)}
-      >
-        内容
-      </Drawer>
-    </>
-  );
-}
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| open | 是否显示（受控） | `boolean` | `false` |
-| title | 标题 | `ReactNode` | - |
-| children | 内容 | `ReactNode` | - |
-| footer | 底部内容 | `ReactNode` | - |
-| width | 宽度 | `string \| number` | - |
-| height | 高度 | `string \| number` | - |
-| placement | 位置 | `top \| right \| bottom \| left` | `right` |
-| closable | 是否显示关闭按钮 | `boolean` | `true` |
-| mask | 是否显示遮罩 | `boolean` | `true` |
-| maskClosable | 点击遮罩是否关闭 | `boolean` | `true` |
-| animated | 是否动画 | `boolean` | `true` |
-| size | 预设尺寸 | `sm \| md \| lg \| xl` | `md` |
-
-### Toast 消息提示
-
-```tsx
-import { ToastProvider, useToast } from 'liyue-ui';
-
-function App() {
-  const toast = useToast();
-
-  return (
-    <Button onClick={() => toast.success('成功')}>成功</Button>
-    <Button onClick={() => toast.error('失败')}>失败</Button>
-    <Button onClick={() => toast.warning('警告')}>警告</Button>
-    <Button onClick={() => toast.info('信息')}>信息</Button>
-    <Button onClick={() => toast.loading('加载中...')}>加载</Button>
-  );
-}
-
-// 使用 Provider
-function Root() {
-  return (
-    <ToastProvider position="top-right" maxCount={3}>
-      <App />
-    </ToastProvider>
-  );
-}
-```
-
-**ToastProvider API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| maxCount | 最大显示数量 | `number` | `5` |
-| position | 位置 | `top \| top-left \| top-right \| bottom \| bottom-left \| bottom-right` | `top` |
-
-**Toast API:**
-
-| 参数 | 说明 | 类型 |
-|------|------|------|
-| content | 内容 | `ReactNode` |
-| options.duration | 显示时长（毫秒） | `number` |
-| options.type | 类型 | `success \| error \| warning \| info \| loading` |
-| options.closable | 是否可关闭 | `boolean` |
-| options.icon | 自定义图标 | `ReactNode` |
-
-### Alert 警告提示
-
-```tsx
-import { Alert } from 'liyue-ui';
-
-<Alert message="信息提示" />
-<Alert type="success" message="成功" description="详细信息" />
-<Alert type="warning" message="警告" closable />
-<Alert type="error" message="错误" showIcon={false} />
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| message | 标题 | `ReactNode` | - |
-| description | 描述 | `ReactNode` | - |
-| type | 类型 | `success \| info \| warning \| error` | `info` |
-| closable | 是否可关闭 | `boolean` | `false` |
-| showIcon | 是否显示图标 | `boolean` | `true` |
-| largeTitle | 是否使用大标题 | `boolean` | `false` |
-| icon | 自定义图标 | `ReactNode` | - |
-
-### Tooltip 文字提示
-
-```tsx
-import { Tooltip } from 'liyue-ui';
-
-<Tooltip content="提示文字">
-  <Button>鼠标悬停</Button>
-</Tooltip>
-
-<Tooltip content="左侧提示" placement="left">
-  <Button>左侧</Button>
-</Tooltip>
-
-<Tooltip content="点击提示" trigger="click">
-  <Button>点击</Button>
-</Tooltip>
-```
-
-**API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| content | 提示内容 | `ReactNode` | - |
-| trigger | 触发方式 | `hover \| click \| focus` | `hover` |
-| placement | 位置 | `top \| left \| right \| bottom \| top-left \| top-right \| bottom-left \| bottom-right` | `top` |
-| mouseEnterDelay | 延迟显示（毫秒） | `number` | `100` |
-| mouseLeaveDelay | 延迟隐藏（毫秒） | `number` | `100` |
-| maxWidth | 最大宽度 | `string \| number` | - |
-
-## 表单组件
-
-### Form 表单
-
-```tsx
-import { Form, FormItem, Input, Select, Button } from 'liyue-ui';
-
-<Form layout="vertical">
-  <FormItem label="用户名" name="username" required>
-    <Input placeholder="请输入用户名" />
-  </FormItem>
-  <FormItem
-    label="邮箱"
-    name="email"
-    rules={[
-      { required: true, message: '请输入邮箱' },
-      { type: 'email', message: '邮箱格式不正确' },
-    ]}
-  >
-    <Input placeholder="请输入邮箱" />
-  </FormItem>
-  <FormItem label="简介" name="bio" initialValue="默认内容">
-    <Input.TextArea placeholder="请输入简介" />
-  </FormItem>
-  <Button htmlType="submit">提交</Button>
-</Form>
-```
-
-**Form API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| layout | 表单布局 | `horizontal \| vertical \| inline` | `vertical` |
-| labelAlign | 标签对齐 | `left \| right \| center` | `right` |
-| labelWidth | 标签宽度 | `string \| number` | - |
-| value | 表单值（受控） | `Record<string, any>` | - |
-| defaultValue | 默认值 | `Record<string, any>` | `{}` |
-| disabled | 是否禁用 | `boolean` | `false` |
-| onChange | 变化回调 | `(values) => void` | - |
-| onSubmit | 提交回调 | `(values) => void` | - |
-
-**FormItem API:**
-
-| 参数 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| name | 字段名 | `string` | - |
-| label | 标签 | `string` | - |
-| initialValue | 初始值 | `any` | - |
-| rules | 验证规则 | `ValidationRule[]` | - |
-| required | 是否必填 | `boolean` | `false` |
-| error | 自定义错误 | `string` | - |
-
-**ValidationRule:**
-
-| 规则 | 说明 | 类型 |
-|------|------|------|
-| required | 是否必填 | `boolean` |
-| message | 错误信息 | `string` |
-| type | 类型 | `string \| number \| email \| url \| pattern` |
-| pattern | 正则表达式 | `RegExp` |
-| min | 最小值 | `number` |
-| max | 最大值 | `number` |
-| minLength | 最小长度 | `number` |
-| maxLength | 最大长度 | `number` |
-| validator | 自定义验证函数 | `(value) => boolean \| string` |
-
-## 样式定制
-
-### CSS Variables
-
-组件库使用 CSS Variables 来控制样式，可以通过覆盖这些变量来定制主题：
+通过覆盖 CSS Variables 来定制主题：
 
 ```css
 :root {
@@ -1351,9 +533,7 @@ import { Form, FormItem, Input, Select, Button } from 'liyue-ui';
 }
 ```
 
-### 主题
-
-#### 暗色主题
+### 暗色主题
 
 启用暗色主题：
 
@@ -1369,11 +549,10 @@ document.documentElement.setAttribute('data-theme', 'dark');
   --ly-text-primary: #f9fafb;
   --ly-bg-primary: #1f2937;
   --ly-bg-secondary: #111827;
-  /* 更多变量... */
 }
 ```
 
-#### 紧凑主题
+### 紧凑主题
 
 启用紧凑主题减小组件尺寸：
 
@@ -1381,81 +560,291 @@ document.documentElement.setAttribute('data-theme', 'dark');
 document.documentElement.setAttribute('data-theme', 'compact');
 ```
 
-### 组件样式覆盖
+---
 
-可以使用 CSS 类名或 style 属性覆盖组件样式：
+## 🌍 国际化（i18n）
+
+组件库内置了完整的国际化支持，支持简体中文和英文切换。
+
+### 基本用法
 
 ```tsx
-// 使用 style
-<Button
-  style={{
-    backgroundColor: '#f0f0f0',
-    borderRadius: '20px',
-    padding: '10px 20px',
-  }}
->
-  自定义样式
-</Button>
+import { I18nProvider, useI18n } from 'liyue-ui';
 
-// 使用 CSS 类名
-<div className="ly-button ly-button--primary custom-button">
-  自定义样式
-</div>
+function App() {
+  return (
+    <I18nProvider locale="zh-CN">
+      <YourApp />
+    </I18nProvider>
+  );
+}
 
-// CSS
-.custom-button {
-  background-color: #f0f0f0;
-  border-radius: 20px;
+// 在组件中使用
+function MyComponent() {
+  const { locale, setLocale, t } = useI18n();
+
+  return (
+    <div>
+      <p>当前语言: {locale === 'zh-CN' ? '简体中文' : 'English'}</p>
+      <button onClick={() => setLocale('en-US')}>切换到英文</button>
+      <button onClick={() => setLocale('zh-CN')}>切换到中文</button>
+    </div>
+  );
 }
 ```
 
-## 自定义文本支持
+### 支持的语言
 
-组件支持自定义文本，可以覆盖默认的标签文本。支持的组件包括：
+- `zh-CN` - 简体中文（默认）
+- `en-US` - English
 
-### Pagination 分页器
+---
+
+## 📚 常用组件示例
+
+### Button 按钮
 
 ```tsx
-<Pagination
-  total={100}
-  prevText="Previous Page"
-  nextText="Next Page"
-  jumpText="Go to"
-  pageText="page"
-/>
+import { Button } from 'liyue-ui';
+
+// 基本用法
+<Button>默认按钮</Button>
+<Button type="primary">主要按钮</Button>
+<Button type="success">成功按钮</Button>
+<Button type="warning">警告按钮</Button>
+<Button type="danger">危险按钮</Button>
+
+// 不同尺寸
+<Button size="sm">小按钮</Button>
+<Button size="md">中等按钮</Button>
+<Button size="lg">大按钮</Button>
+
+// 状态
+<Button plain>朴素按钮</Button>
+<Button round>圆角按钮</Button>
+<Button loading>加载中</Button>
+<Button disabled>禁用</Button>
+```
+
+### Input 输入框
+
+```tsx
+import { Input } from 'liyue-ui';
+
+// 基本用法
+<Input placeholder="请输入" />
+
+// 前缀和后缀
+<Input prefix={<IconUser />} placeholder="用户名" />
+<Input suffix={<IconSearch />} placeholder="搜索" />
+
+// 可清除
+<Input clearable defaultValue="可清除的内容" />
+
+// 密码框
+<Input type="password" showPasswordToggle placeholder="密码" />
 ```
 
 ### Select 选择器
 
 ```tsx
+import { Select } from 'liyue-ui';
+
+// 基本用法
 <Select
-  placeholder="Choose an option"
-  emptyText="No options available"
-  maxTagText="{count} items selected"
-  options={options}
+  options={[
+    { label: '选项1', value: 1 },
+    { label: '选项2', value: 2 },
+    { label: '禁用选项', value: 3, disabled: true },
+  ]}
+  placeholder="请选择"
 />
+
+// 多选
+<Select multiple placeholder="多选" options={options} />
+
+// 可搜索
+<Select searchable placeholder="搜索选择" options={options} />
 ```
 
-### Table 表格
+### Modal 对话框
 
 ```tsx
-<Table
-  columns={columns}
-  dataSource={data}
-  emptyText="No data available"
-/>
+import { Modal, Button } from 'liyue-ui';
+import { useState } from 'react';
+
+function Example() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>打开</Button>
+      <Modal
+        open={open}
+        title="标题"
+        onClose={() => setOpen(false)}
+      >
+        内容
+      </Modal>
+    </>
+  );
+}
 ```
 
-所有组件的默认文本都支持 i18n 切换，如果提供了自定义文本，则优先显示自定义文本。
+### Toast 消息提示
 
-## 浏览器支持
+```tsx
+import { ToastProvider, useToast } from 'liyue-ui';
+
+function App() {
+  const toast = useToast();
+
+  return (
+    <Button onClick={() => toast.success('成功')}>成功</Button>
+    <Button onClick={() => toast.error('失败')}>失败</Button>
+    <Button onClick={() => toast.warning('警告')}>警告</Button>
+    <Button onClick={() => toast.info('信息')}>信息</Button>
+  );
+}
+
+// 使用 Provider
+function Root() {
+  return (
+    <ToastProvider position="top-right" maxCount={3}>
+      <App />
+    </ToastProvider>
+  );
+}
+```
+
+---
+
+## 🔧 项目脚本
+
+本项目提供了以下 npm 脚本：
+
+| 脚本 | 说明 |
+|------|------|
+| `npm run dev` | 启动开发服务器（热重载） |
+| `npm run build` | 构建库版本（用于发布到 npm） |
+| `npm run preview` | 预览生产构建 |
+| `npm run typecheck` | 执行 TypeScript 类型检查 |
+| `npm run test:env` | 测试环境配置 |
+
+### 构建说明
+
+**开发环境构建 (`npm run dev`)：**
+- 使用 Vite 的开发服务器
+- 支持热模块替换（HMR）
+- 代码修改后自动刷新
+- 适合开发和调试组件
+
+**生产环境构建 (`npm run build`)：**
+- 优化代码，移除开发注释和调试代码
+- 压缩 JavaScript 和 CSS
+- 生成 TypeScript 类型定义文件
+- 输出目录：`dist/`
+
+**预览构建 (`npm run preview`)：**
+- 在本地服务器上预览生产构建
+- 用于测试构建后的组件库是否正常工作
+
+---
+
+## 📁 目录结构
+
+```
+liyue-ui/
+├── src/                          # 源代码目录
+│   ├── components/               # 组件目录
+│   │   ├── Alert/               # 警告提示组件
+│   │   ├── Avatar/              # 头像组件
+│   │   ├── Badge/               # 徽章组件
+│   │   ├── Breadcrumb/          # 面包屑导航
+│   │   ├── Button/              # 按钮组件
+│   │   ├── Card/                # 卡片组件
+│   │   ├── Checkbox/            # 复选框组件
+│   │   ├── Drawer/              # 抽屉组件
+│   │   ├── Form/                # 表单组件
+│   │   ├── Input/               # 输入框组件
+│   │   ├── Layout/              # 布局组件
+│   │   ├── Menu/                # 菜单组件
+│   │   ├── Modal/               # 模态框组件
+│   │   ├── Pagination/          # 分页组件
+│   │   ├── Progress/            # 进度条组件
+│   │   ├── Radio/               # 单选框组件
+│   │   ├── Select/              # 选择器组件
+│   │   ├── Skeleton/            # 骨架屏组件
+│   │   ├── Slider/              # 滑块组件
+│   │   ├── Steps/               # 步骤条组件
+│   │   ├── Switch/              # 开关组件
+│   │   ├── Table/               # 表格组件
+│   │   ├── Tabs/                # 标签页组件
+│   │   ├── Tag/                 # 标签组件
+│   │   ├── Toast/               # 消息提示组件
+│   │   └── Tooltip/             # 文字提示组件
+│   ├── i18n/                     # 国际化配置
+│   ├── styles/                   # 全局样式
+│   │   ├── variables.css       # CSS 变量定义
+│   │   ├── base.css             # 基础样式重置
+│   │   └── theme.css            # 主题配置
+│   ├── App.tsx                   # 示例应用入口
+│   ├── main.tsx                 # React 渲染入口
+│   └── index.ts                 # 组件库导出入口
+├── dist/                         # 构建输出目录（构建后生成）
+├── index.html                    # 开发服务器 HTML 入口
+├── package.json                  # 项目配置
+├── tsconfig.json                 # TypeScript 配置
+├── vite.config.ts               # Vite 配置
+└── README.md                     # 项目文档
+```
+
+---
+
+## 🌐 浏览器支持
 
 - Chrome (latest)
 - Firefox (latest)
 - Safari (latest)
 - Edge (latest)
 
-## 许可证
+## 📄 许可证
 
 MIT
-=======
+
+---
+
+## ❓ 常见问题
+
+### 如何自定义主题颜色？
+
+可以通过覆盖 CSS 变量来定制主题：
+
+```css
+:root {
+  --ly-primary: #1890ff;
+  --ly-primary-hover: #40a9ff;
+  --ly-primary-active: #096dd9;
+}
+```
+
+### 如何使用暗色主题？
+
+```tsx
+// 在 App 根组件上设置 data-theme 属性
+function App() {
+  return (
+    <div data-theme="dark">
+      <YourContent />
+    </div>
+  );
+}
+```
+
+### 如何贡献代码？
+
+1. Fork 本仓库
+2. 创建你的特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交你的更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 创建 Pull Request

@@ -116,3 +116,5 @@
 .ly-alert--error .ly-alert__close {
   color: var(--ly-danger);
 }
+
+.ly-alert--no-desc {}

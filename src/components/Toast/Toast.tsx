@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useCallback, useMemo, useRef } from 'react';
+import { Icon } from '../Icon';
 import './Toast.css';
 
 export interface ToastItem {
@@ -121,42 +122,19 @@ export const ToastProvider: React.FC<ToastProps> = ({
     destroy,
   }), [toast, success, error, warning, info, loading, remove, destroy]);
 
-  const getIcon = (type?: string, icon?: React.ReactNode) => {
+  const getIcon = (type?: string, icon?: React.ReactNode): React.ReactNode => {
     if (icon) return icon;
     switch (type) {
       case 'success':
-        return (
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <circle cx="12" cy="12" r="10" />
-            <polyline points="7 12 10.5 15.5 17 8" />
-          </svg>
-        );
+        return <Icon type="check-circle" size={20} />;
       case 'error':
-        return (
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <circle cx="12" cy="12" r="10" />
-            <line x1="16" y1="8" x2="8" y2="16" />
-            <line x1="16" y1="16" x2="8" y2="8" />
-          </svg>
-        );
+        return <Icon type="close-circle" size={20} />;
       case 'warning':
-        return (
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round">
-            <path d="M12 5L4 18h16L12 5z" />
-            <line x1="12" y1="10" x2="12" y2="13" />
-            <circle cx="12" cy="15.5" r="1" fill="currentColor" stroke="none" />
-          </svg>
-        );
+        return <Icon type="warning" size={20} />;
       case 'loading':
-        return <div className="ly-toast__loading" />;
+        return <Icon type="loading" size={20} className="ly-toast__loading" />;
       default:
-        return (
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <circle cx="12" cy="12" r="10" />
-            <line x1="12" y1="10" x2="12" y2="17" />
-            <circle cx="12" cy="7" r="0.5" fill="currentColor" />
-          </svg>
-        );
+        return <Icon type="info-circle" size={20} />;
     }
   };
 
@@ -170,10 +148,7 @@ export const ToastProvider: React.FC<ToastProps> = ({
             <span className="ly-toast__content">{item.content}</span>
             {item.closable && (
               <button className="ly-toast__close" onClick={() => remove(item.id)}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
+                <Icon type="close" size={14} />
               </button>
             )}
           </div>

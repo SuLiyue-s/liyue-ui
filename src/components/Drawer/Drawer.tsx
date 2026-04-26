@@ -1,4 +1,5 @@
 import React, { forwardRef, useMemo, useEffect } from 'react';
+import { Icon } from '../Icon';
 import './Drawer.css';
 
 export interface DrawerProps {
@@ -126,10 +127,7 @@ export const Drawer = forwardRef<HTMLDivElement, DrawerProps>(
         <div className={`ly-drawer__panel ${animated ? 'ly-drawer__panel--animated' : ''}`} style={drawerStyle}>
           {closable && (
             <button className="ly-drawer__close" onClick={onClose}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
+              <Icon type="close" size={16} />
             </button>
           )}
           {title && <div className="ly-drawer__header">{title}</div>}

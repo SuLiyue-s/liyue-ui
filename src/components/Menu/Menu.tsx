@@ -1,4 +1,5 @@
 import React, { forwardRef, useMemo, useState } from 'react';
+import { Icon } from '../Icon';
 import './Menu.css';
 
 export interface MenuItem {
@@ -124,9 +125,7 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(
             <span className="ly-menu__item-label">{item.label}</span>
             {hasChildren && (
               <span className="ly-menu__item-arrow">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
+                <Icon type="down" size={16} />
               </span>
             )}
           </div>

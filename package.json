@@ -11,17 +11,19 @@
     "build:lib": "vite build",
     "preview": "vite preview",
     "test:env": "node test-node.js",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@shulex/icons": "^1.0.0",
+    "classnames": "^2.5.1",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.0.0",
-    "typescript": "^5.0.0",
+    "typescript": "^5.0.4",
     "vite": "^5.0.0",
     "vite-plugin-dts": "^3.0.0"
   },

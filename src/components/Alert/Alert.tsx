@@ -1,4 +1,5 @@
 import React, { forwardRef, useMemo } from 'react';
+import { Icon } from '../Icon';
 import './Alert.css';
 
 export interface AlertProps {
@@ -51,36 +52,13 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
       if (icon) return icon;
       switch (type) {
         case 'success':
-          return (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="7 12 10.5 15.5 17 8" />
-            </svg>
-          );
+          return <Icon type="check-circle" size={20} />;
         case 'error':
-          return (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <circle cx="12" cy="12" r="10" />
-              <line x1="16" y1="8" x2="8" y2="16" />
-              <line x1="16" y1="16" x2="8" y2="8" />
-            </svg>
-          );
+          return <Icon type="close-circle" size={20} />;
         case 'warning':
-          return (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round">
-              <path d="M12 4L4 20h16L12 4z" />
-              <line x1="12" y1="10" x2="12" y2="14" />
-              <circle cx="12" cy="16" r="1" fill="currentColor" stroke="none" />
-            </svg>
-          );
+          return <Icon type="warning" size={20} />;
         default:
-          return (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <circle cx="12" cy="12" r="10" />
-              <line x1="12" y1="10" x2="12" y2="17" />
-              <circle cx="12" cy="7" r="0.5" fill="currentColor" />
-            </svg>
-          );
+          return <Icon type="info-circle" size={20} />;
       }
     };
 
@@ -106,10 +84,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
         </div>
         {closable && (
           <button className="ly-alert__close" onClick={handleClose}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
+            <Icon type="close" size={16} />
           </button>
         )}
       </div>

@@ -23,3 +23,4 @@ export { default as Drawer } from './Drawer';
 export { ToastProvider, useToast } from './Toast';
 export { default as Alert } from './Alert';
 export { default as Tooltip } from './Tooltip';
+export { default as Icon } from './Icon';

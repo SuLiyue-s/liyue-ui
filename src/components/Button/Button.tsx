@@ -1,4 +1,5 @@
 import React, { forwardRef, useMemo } from 'react';
+import { Icon } from '../Icon';
 import './Button.css';
 
 export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
@@ -83,25 +84,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const iconElement = useMemo(() => {
       if (loading && loadingIcon) return loadingIcon;
       if (loading && !loadingIcon) {
-        return (
-          <svg
-            className="ly-button__loading-icon"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeDasharray="31.416"
-              strokeDashoffset="10"
-            />
-          </svg>
-        );
+        return <Icon type="loading" size={16} className="ly-button__loading-icon" />;
       }
       return icon;
     }, [loading, loadingIcon, icon]);

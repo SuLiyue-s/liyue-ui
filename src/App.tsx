@@ -29,6 +29,7 @@ import {
   useToast,
   Alert,
   Tooltip,
+  Icon,
 } from './components';
 import { Form, FormItem } from './components/Form';
 import { TextArea } from './components/Input';
@@ -54,13 +55,13 @@ const tableData = [
 ];
 
 const menuItems = [
-  { key: 'home', label: '首页', icon: '🏠' },
-  { key: 'about', label: '关于', icon: 'ℹ️' },
-  { key: 'products', label: '产品', icon: '📦', children: [
+  { key: 'home', label: '首页', icon: <Icon type="home" /> },
+  { key: 'about', label: '关于', icon: <Icon type="info-circle" /> },
+  { key: 'products', label: '产品', icon: <Icon type="star" />, children: [
     { key: 'p1', label: '产品1' },
     { key: 'p2', label: '产品2' },
   ]},
-  { key: 'contact', label: '联系', icon: '📧' },
+  { key: 'contact', label: '联系', icon: <Icon type="phone" /> },
 ];
 
 const tabItems = [
@@ -111,7 +112,7 @@ function DemoApp() {
           <Button round>圆角</Button>
           <Button loading>加载中</Button>
           <Button disabled>禁用</Button>
-          <Button type="primary" icon="✓">带图标</Button>
+          <Button type="primary" icon={<Icon type="check-circle" />}>带图标</Button>
         </Flex>
         <Divider />
         <Flex wrap gap="md">
@@ -403,6 +404,81 @@ function App() {
     <I18nProvider locale="zh-CN">
       <ToastProvider position="top-right" maxCount={3}>
         <DemoApp />
+        <Container maxWidth="xl" padding="md">
+          <Card title="图标展示 Icon Showcase" style={{ marginTop: '2rem' }}>
+            <Grid cols={4} gap="lg">
+              {/* 成功相关图标 */}
+              <div style={{ textAlign: 'center', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+                <Icon type="check-circle" size={48} style={{ color: '#52c41a' }} />
+                <div style={{ marginTop: '0.5rem', fontSize: '14px' }}>check-circle</div>
+                <div style={{ fontSize: '12px', color: '#999' }}>圆圈带对号（空心）✓</div>
+              </div>
+              <div style={{ textAlign: 'center', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+                <Icon type="check-circle-filled" size={48} style={{ color: '#52c41a' }} />
+                <div style={{ marginTop: '0.5rem', fontSize: '14px' }}>check-circle-filled</div>
+                <div style={{ fontSize: '12px', color: '#999' }}>圆圈带对号（实心）</div>
+              </div>
+
+              {/* 警告相关图标 */}
+              <div style={{ textAlign: 'center', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+                <Icon type="warning" size={48} style={{ color: '#faad14' }} />
+                <div style={{ marginTop: '0.5rem', fontSize: '14px' }}>warning</div>
+                <div style={{ fontSize: '12px', color: '#999' }}>三角形带感叹号（空心）✓</div>
+              </div>
+              <div style={{ textAlign: 'center', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+                <Icon type="warning-filled" size={48} style={{ color: '#faad14' }} />
+                <div style={{ marginTop: '0.5rem', fontSize: '14px' }}>warning-filled</div>
+                <div style={{ fontSize: '12px', color: '#999' }}>三角形带感叹号（实心）</div>
+              </div>
+
+              {/* 信息相关图标 */}
+              <div style={{ textAlign: 'center', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+                <Icon type="info-circle" size={48} style={{ color: '#1890ff' }} />
+                <div style={{ marginTop: '0.5rem', fontSize: '14px' }}>info-circle</div>
+                <div style={{ fontSize: '12px', color: '#999' }}>圆圈带 i（空心）✓</div>
+              </div>
+              <div style={{ textAlign: 'center', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+                <Icon type="info-circle-filled" size={48} style={{ color: '#1890ff' }} />
+                <div style={{ marginTop: '0.5rem', fontSize: '14px' }}>info-circle-filled</div>
+                <div style={{ fontSize: '12px', color: '#999' }}>圆圈带 i（实心）</div>
+              </div>
+
+              {/* 错误相关图标 */}
+              <div style={{ textAlign: 'center', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+                <Icon type="close-circle" size={48} style={{ color: '#ff4d4f' }} />
+                <div style={{ marginTop: '0.5rem', fontSize: '14px' }}>close-circle</div>
+                <div style={{ fontSize: '12px', color: '#999' }}>圆圈带叉叉（空心）</div>
+              </div>
+              <div style={{ textAlign: 'center', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+                <Icon type="close-circle-filled" size={48} style={{ color: '#ff4d4f' }} />
+                <div style={{ marginTop: '0.5rem', fontSize: '14px' }}>close-circle-filled</div>
+                <div style={{ fontSize: '12px', color: '#999' }}>圆圈带叉叉（实心）</div>
+              </div>
+
+              {/* 其他常用图标 */}
+              <div style={{ textAlign: 'center', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+                <Icon type="close" size={48} style={{ color: '#999' }} />
+                <div style={{ marginTop: '0.5rem', fontSize: '14px' }}>close</div>
+                <div style={{ fontSize: '12px', color: '#999' }}>关闭</div>
+              </div>
+              <div style={{ textAlign: 'center', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+                <Icon type="loading" size={48} style={{ color: '#1890ff' }} />
+                <div style={{ marginTop: '0.5rem', fontSize: '14px' }}>loading</div>
+                <div style={{ fontSize: '12px', color: '#999' }}>加载中</div>
+              </div>
+              <div style={{ textAlign: 'center', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+                <Icon type="user" size={48} style={{ color: '#1890ff' }} />
+                <div style={{ marginTop: '0.5rem', fontSize: '14px' }}>user</div>
+                <div style={{ fontSize: '12px', color: '#999' }}>用户</div>
+              </div>
+              <div style={{ textAlign: 'center', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+                <Icon type="home" size={48} style={{ color: '#1890ff' }} />
+                <div style={{ marginTop: '0.5rem', fontSize: '14px' }}>home</div>
+                <div style={{ fontSize: '12px', color: '#999' }}>首页</div>
+              </div>
+            </Grid>
+          </Card>
+        </Container>
       </ToastProvider>
     </I18nProvider>
   );

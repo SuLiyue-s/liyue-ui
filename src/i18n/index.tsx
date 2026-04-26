@@ -188,7 +188,7 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({
   defaultLocale = 'zh-CN',
   messages,
   children,
-}) => {
+}): React.ReactNode => {
   const [currentLocale, setCurrentLocale] = useState<Locale>(locale || defaultLocale);
 
   const currentMessages = useMemo(() => {

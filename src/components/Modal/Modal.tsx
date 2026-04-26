@@ -1,4 +1,5 @@
 import React, { forwardRef, useMemo, useEffect } from 'react';
+import { Icon } from '../Icon';
 import './Modal.css';
 
 export interface ModalProps {
@@ -131,10 +132,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
           <div className="ly-modal" style={modalStyle}>
             {closable && (
               <button className="ly-modal__close" onClick={onClose}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
+                <Icon type="close" size={16} />
               </button>
             )}
             {title && <div className="ly-modal__header">{title}</div>}
